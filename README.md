@@ -23,7 +23,48 @@
 - Docker
 
 ## テーブル設計
-（※ここに後でER図を追加します）
+
+```mermaid
+erDiagram
+    users ||--o{ attendances : "1対多"
+    attendances ||--o{ break_times : "1対多"
+    attendances ||--o{ stamp_correction_requests : "1対多"
+
+    users {
+        bigint id PK
+        string name
+        string email
+        string password
+    }
+    admins {
+        bigint id PK
+        string name
+        string email
+        string password
+    }
+    attendances {
+        bigint id PK
+        bigint user_id FK
+        date date
+        time start_time
+        time end_time
+    }
+    break_times {
+        bigint id PK
+        bigint attendance_id FK
+        time start_time
+        time end_time
+    }
+    stamp_correction_requests {
+        bigint id PK
+        bigint attendance_id FK
+        date date
+        time start_time
+        time end_time
+        string reason
+        boolean status
+    }
+    ```
 
 ## 🛠 環境構築
 
