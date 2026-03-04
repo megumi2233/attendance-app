@@ -64,7 +64,7 @@ erDiagram
         string reason
         string status
     }
- ```
+```
 
 ## 🛠 環境構築
 
