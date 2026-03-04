@@ -62,9 +62,9 @@ erDiagram
         time start_time
         time end_time
         string reason
-        boolean status
+        string status
     }
-    ```
+ ```
 
 ## 🛠 環境構築
 
