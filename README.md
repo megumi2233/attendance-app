@@ -98,3 +98,24 @@ make init
 **【一般ユーザー】**
 - メールアドレス: `test@example.com`
 - パスワード: `password`
+
+---
+
+### 🧩 View ファイルの作成
+resources/views/layouts/app.blade.php （一般：全画面共通のヘッダー＆土台）
+resources/views/auth/register.blade.php （一般：会員登録画面）
+resources/views/auth/login.blade.php （一般：ログイン画面）
+resources/views/attendance/index.blade.php （一般：勤怠登録画面）
+resources/views/attendance/list.blade.php （一般：勤怠一覧画面）
+resources/views/attendance/detail.blade.php （一般：勤怠詳細画面）
+
+---
+
+### 🎨 CSS ファイルの作成
+public/css/common.css （一般：全画面共通のリセット＆ヘッダー用）
+public/css/auth.css （一般：会員登録・ログイン画面）
+public/css/attendance.css （一般：勤怠登録画面）
+public/css/attendance-list.css （一般：勤怠一覧画面）
+public/css/attendance-detail.css （一般：勤怠詳細画面）
+
+---

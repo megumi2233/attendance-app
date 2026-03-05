@@ -1,45 +1,58 @@
+/* ベースのデザイン（余白リセットはsanitize.cssにお任せ！） */
+body {
+    background-color: #ffffff
+    font-family: sans-serif;
+}
+
+/* ヘッダーのデザイン */
 .header {
-  background: #000;
+    background-color: #000;
+    padding: 15px 30px;
 }
 
-.header__inner {
-  margin: 0 auto;
-  padding: 20px 15px;
-  max-width: 1230px;
+.header-logo img {
+    height: 25px;
 }
 
-.header-utilities {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* ヘッダーの中身を横並びにする */
+.header {
+    background-color: #000;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between; /* ロゴとメニューを左右に離す */
+    align-items: center; /* 縦の真ん中を揃える */
 }
 
-.header__logo {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 24px;
+/* ヘッダーのナビゲーションメニュー */
+.header-nav-list {
+    display: flex;
+    list-style: none; /* 点マークを消す */
+    margin: 0;
+    padding: 0;
+    gap: 30px; /* メニュー同士の隙間 */
 }
 
-.header-utilities nav {
-  width: 18%;
+.header-nav-item a,
+.header-nav-button {
+    color: #fff; /* 文字を白に */
+    text-decoration: none; /* 下線を消す */
+    font-weight: bold;
+    font-size: 14px;
 }
 
-.header-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.header-nav-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 
-.header-nav__link {
-  color: #fff;
-  text-decoration: none;
-}
-
-.header-nav__button {
-  border: none;
-  background: transparent;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
+/* 共通の縦線付き見出し */
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 30px 0;
+    padding-left: 15px;
+    border-left: 5px solid #000; /* ここで黒い縦線を作っています！ */
+    line-height: 1;
 }

@@ -1,0 +1,78 @@
+/* ① 横幅と上の余白を大きく！ */
+.register-form,
+.login-form {
+    width: 100%;
+    max-width: 600px; /* 👈 500pxから600pxに広げる！ */
+    margin: 0 auto;
+    padding-top: 40px; /* 👈 ヘッダーからの距離を少し下げる！ */
+}
+
+/* ② タイトルを大きく、下の余白も広く！ */
+.main-title {
+    text-align: center;
+    font-size: 28px; /* 👈 24pxから大きく！ */
+    margin-bottom: 30px; /* 👈 30pxから広く！ */
+    font-weight: bold;
+}
+
+/* ③ 入力欄と入力欄の間の隙間を広くして、縦に長くする！ */
+.form-group {
+    margin-bottom: 30px; /* 👈 20pxから広く！ */
+}
+
+/* ④ ラベル（名前、メールアドレス等の文字）を少し大きく！ */
+.form-label {
+    display: block;
+    margin-bottom: 10px; /* 👈 5pxから広く！ */
+    font-size: 16px; /* 👈 14pxから大きく！ */
+    font-weight: bold;
+}
+
+/* ⑤ 入力欄の「中の余白」を増やして、高さを出す！ */
+.form-input {
+    width: 100%;
+    padding: 15px; /* 👈 10pxから15pxに増やして、分厚くする！ */
+    border: 1px solid #000000;
+    border-radius: 3px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    font-size: 16px; /* 👈 入力する文字も少し大きく */
+}
+
+/* ⑥ ボタンも分厚く、文字を大きく！ */
+.form-button {
+    width: 100%;
+    padding: 15px; /* 👈 12pxから15pxに増やして分厚く！ */
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 18px; /* 👈 16pxから大きく！ */
+    font-weight: bold;
+    margin-top: 20px; /* 👈 ボタンの上の隙間も広く！ */
+}
+
+.form-error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.register-link,
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.link-text {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* ログイン画面は入力欄が少なくて上に寄ってしまうので、特別に上の余白を増やす！ */
+.login-form {
+    padding-top: 150px; /* 👈 80pxよりも大きくして、グッと下に押し下げます！ */
+}

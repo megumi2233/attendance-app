@@ -1,0 +1,85 @@
+/* ① 画面全体をグレーにして、一番下まで伸ばす */
+.attendance-list-page {
+    width: 100%;
+    background-color: #f5f5f5; /* 👈 全体をグレーに！ */
+    min-height: calc(100vh - 55px);
+    padding: 40px 20px;
+}
+
+/* ② タイトルの位置を、真ん中エリアに合わせる */
+.attendance-list-page .section-title {
+    max-width: 1000px;
+    margin: 40px auto 30px auto; /* 👈 上の余白を0から40pxに増やして下に下げる！ */
+    font-size: 28px; /* 👈 【追加】文字サイズを大きく！ */
+}
+
+/* ③ 月の切り替え部分を白く囲む */
+.month-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff; /* 👈 白い箱にする！ */
+    padding: 15px 30px;
+    margin: 0 auto 20px auto;
+    border-radius: 5px; /* 少し角を丸く */
+    max-width: 1000px;
+}
+
+.month-selector-btn {
+    color: #888888; /* 👈 黒から灰色に変更！ */
+    font-weight: bold; /* 👈 太字を追加！ */
+    text-decoration: none;
+    font-size: 16px; /* 👈 ついでに文字も少し大きく！ */
+}
+
+.month-selector-current {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* ④ テーブルを白く囲む */
+.attendance-table {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #fff; /* 👈 白い箱にする！ */
+}
+
+/* ⑤ テーブルの基本設定（文字の隙間を広げる！） */
+.attendance-table th,
+.attendance-table td {
+    /* 👇 20px（上下左右）から、15px(上下) 20px(左右) に変更して、縦幅を少しキュッと締めます！ */
+    padding: 15px 20px; 
+    text-align: center;
+    font-weight: bold; 
+    letter-spacing: 2px; 
+}
+
+/* ⑥ 見出し行（1行目）の特別な設定 */
+.attendance-table th {
+    color: #888888;
+    font-size: 16px;
+    border-bottom: 4px solid #cccccc; /* 👈 1行目だけ、線をさらに太く(4px)＆少し濃くして目立たせる！ */
+}
+
+/* ⑦ データ行（2行目以降）の特別な設定 */
+.attendance-table td {
+    color: #888888;
+    font-size: 16px; /* 👈 文字サイズをしっかり16pxに固定 */
+    border-bottom: 2px solid #e0e0e0; /* 👈 2行目以降の線は、少し細め(2px)に戻す！ */
+}
+
+/* ⑧ 2行目以降の「詳細」リンクの設定 */
+.detail-link {
+    color: #000000; /* 👈 「詳細」だけは真っ黒の太字！ */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* カレンダーアイコンの位置とサイズを調整 */
+.calendar-icon {
+    vertical-align: middle; /* 文字の高さの真ん中に合わせる */
+    margin-right: 8px;      /* 右の文字（2023/06）との間に隙間をあける */
+    margin-bottom: 4px;     /* 少しだけ上に持ち上げる微調整 */
+}

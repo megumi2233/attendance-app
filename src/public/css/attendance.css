@@ -1,0 +1,84 @@
+/* 見えないh1タグ用の魔法のクラス */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.attendance-page {
+    display: flex;
+    justify-content: center; /* 水平方向（横）の真ん中 */
+    align-items: center;     /* 👈 【追加】垂直方向（縦）の真ん中に配置する魔法！ */
+    
+    /* 👇 【変更】上からの固定余白(padding-top)を消して、画面全体の高さにする */
+    /* 100vh = 画面の高さ100%。そこからヘッダーの高さ（約55px）を引く */
+    min-height: calc(100vh - 55px); 
+    box-sizing: border-box; /* 👈 calcを使う時のバグを防ぐお守り */
+}
+
+.attendance-panel {
+    text-align: center;
+}
+
+.status-badge {
+    display: inline-block;
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.current-date {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.current-time {
+    font-size: 64px; /* 時間は特大サイズで！ */
+    margin: 0 0 40px 0;
+    font-weight: bold;
+}
+
+.attendance-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* ボタンが2つ並んだ時の隙間 */
+}
+
+/* ボタンの共通設定 */
+.action-button {
+    width: 120px;
+    padding: 15px 0;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 黒いボタン（出勤・退勤） */
+.action-button--black {
+    background-color: #000;
+    color: #fff;
+    border: none;
+}
+
+/* 白いボタン（休憩入・休憩戻） */
+.action-button--white {
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #e0e0e0;
+}
+
+.done-message {
+    font-size: 18px;
+    font-weight: bold;
+}
