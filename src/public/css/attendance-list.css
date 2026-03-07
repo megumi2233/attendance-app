@@ -13,8 +13,8 @@
     font-size: 28px; /* 👈 【追加】文字サイズを大きく！ */
 }
 
-/* ③ 月の切り替え部分を白く囲む */
-.month-selector {
+/* 👇 【リファクタリング】③ 日付（月・日）の切り替え部分を白く囲む */
+.date-selector {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,14 +25,14 @@
     max-width: 1000px;
 }
 
-.month-selector-btn {
+.date-selector-btn {
     color: #888888; /* 👈 黒から灰色に変更！ */
     font-weight: bold; /* 👈 太字を追加！ */
     text-decoration: none;
     font-size: 16px; /* 👈 ついでに文字も少し大きく！ */
 }
 
-.month-selector-current {
+.date-selector-current {
     font-size: 18px;
     font-weight: bold;
 }
@@ -67,7 +67,12 @@
 .attendance-table td {
     color: #888888;
     font-size: 16px; /* 👈 文字サイズをしっかり16pxに固定 */
-    border-bottom: 2px solid #e0e0e0; /* 👈 2行目以降の線は、少し細め(2px)に戻す！ */
+    border-bottom: 3px solid #e0e0e0; /* 👈 2行目以降の線は、少し細め(2px)に戻す！ */
+}
+
+/* 👇 【新規追加】一番下の行は線を消す魔法！ */
+.attendance-table tr:last-child td {
+    border-bottom: none;
 }
 
 /* ⑧ 2行目以降の「詳細」リンクの設定 */

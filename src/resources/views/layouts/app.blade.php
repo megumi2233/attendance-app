@@ -13,7 +13,25 @@
         <div class="header-logo">
             <img src="{{ asset('images/logo.png') }}" alt="COACHTECH">
         </div>
-        @if (Auth::check())
+
+        {{-- 👇 ① 管理者（admin）がログインしている場合のメニュー --}}
+        @if (Auth::guard('admin')->check())
+        <nav class="header-nav">
+            <ul class="header-nav-list">
+                <li class="header-nav-item"><a href="/admin/attendance/list">勤怠一覧</a></li>
+                <li class="header-nav-item"><a href="/admin/staff/list">スタッフ一覧</a></li>
+                <li class="header-nav-item"><a href="/stamp_correction_request/list">申請一覧</a></li>
+                <li class="header-nav-item">
+                    <form action="/admin/logout" method="post">
+                        @csrf
+                        <button class="header-nav-button" type="submit">ログアウト</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        {{-- 👇 ② 一般ユーザー（web）がログインしている場合のメニュー --}}
+        @elseif (Auth::check())
         <nav class="header-nav">
             <ul class="header-nav-list">
                 <li class="header-nav-item"><a href="/attendance">勤怠</a></li>
@@ -28,7 +46,7 @@
             </ul>
         </nav>
         @endif
-        </header>
+    </header>
     <main>
         @yield('content')
     </main>

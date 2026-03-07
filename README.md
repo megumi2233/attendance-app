@@ -108,6 +108,10 @@ resources/views/auth/login.blade.php （一般：ログイン画面）
 resources/views/attendance/index.blade.php （一般：勤怠登録画面）
 resources/views/attendance/list.blade.php （一般：勤怠一覧画面）
 resources/views/attendance/detail.blade.php （一般：勤怠詳細画面）
+resources/views/request/list.blade.php （一般：申請一覧画面）
+resources/views/admin/auth/login.blade.php （管理者用ログイン画面）
+resources/views/admin/attendance/index.blade.php （管理者 勤怠一覧）
+resources/views/admin/attendance/detail.blade.php （管理者 勤怠詳細）
 
 ---
 
@@ -115,7 +119,8 @@ resources/views/attendance/detail.blade.php （一般：勤怠詳細画面）
 public/css/common.css （一般：全画面共通のリセット＆ヘッダー用）
 public/css/auth.css （一般：会員登録・ログイン画面）
 public/css/attendance.css （一般：勤怠登録画面）
-public/css/attendance-list.css （一般：勤怠一覧画面）
-public/css/attendance-detail.css （一般：勤怠詳細画面）
+public/css/attendance-list.css （一般と管理者：勤怠一覧画面）
+public/css/attendance-detail.css （一般と管理者：勤怠詳細画面）
+public/css/request-list.css （一般：申請一覧画面）
 
 ---

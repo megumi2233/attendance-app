@@ -1,0 +1,85 @@
+/* 画面全体の設定 */
+.request-list-page {
+    width: 100%;
+    background-color: #f5f5f5;
+    min-height: calc(100vh - 55px);
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.request-list-page .section-title {
+    max-width: 1000px;
+    margin: 0 auto 50px auto;
+    font-size: 28px;
+}
+
+/* 👇 【修正】タブのデザイン */
+.request-tabs {
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
+    display: flex;
+    border-bottom: 1px solid #000000; /* 👈 タブ全体の下に引く「細い1本の黒線」だけ残す！ */
+    gap: 60px;
+    padding-left: 30px;
+}
+
+.request-tab {
+    font-size: 16px;
+    text-decoration: none;
+    color: #000000; /* 👈 選ばれていない時も「黒文字」！ */
+    padding-bottom: 15px;
+    font-weight: normal; /* 👈 選ばれていない時は「普通の太さ（normal）」！ */
+}
+
+/* 今選ばれている（active）タブだけの特別な魔法🪄 */
+.request-tab.active {
+    font-weight: bold; /* 👈 選ばれた時だけ「太字」！ */
+    /* 🚨 邪魔だった太い下線のコードは完全に削除しました！ */
+}
+
+/* 👇 【修正】テーブルのデザイン */
+.request-table {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.request-table th,
+.request-table td {
+    padding: 18px 20px;
+    text-align: center;
+    font-weight: bold;
+    /* 👇 【削除】この行をまるっと消してみてください！ */
+    /* font-family: inherit; */ 
+}
+
+/* 1行目（見出し）の特別な設定 */
+.request-table th {
+    color: #555555; /* 👈 色を濃いグレーにして、さらに太く見せる！ */
+    font-size: 16px;
+    border-bottom: 4px solid #cccccc;
+}
+
+/* 2行目以降の特別な設定 */
+.request-table td {
+    color: #555555;
+    font-size: 16px;
+    /* 👇 1pxから2pxに変更して、線を少し太くする！ */
+    border-bottom: 3px solid #e0e0e0; 
+}
+
+/* 最後の行は線を消す */
+.request-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* 「詳細」リンクの設定 */
+.detail-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+}

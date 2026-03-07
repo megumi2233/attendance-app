@@ -21,3 +21,22 @@ Route::get('/attendance/list', function () {
 Route::get('/attendance/detail', function () {
     return view('attendance.detail');
 });
+
+// テスト用の仮ルート（申請一覧画面用）
+Route::get('/request/list', function () {
+    return view('request.list');
+});
+
+// テスト用の仮ルート（管理者ログイン画面用）
+Route::get('/admin/login', function () {
+    return view('admin.auth.login');
+});
+
+// テスト用の仮ルート（管理者 勤怠一覧・詳細画面用）
+Route::get('/admin/attendance/list', function () {
+    return view('admin.attendance.index');
+});
+
+Route::get('/admin/attendance/detail/{id}', function () {
+    return view('admin.attendance.detail');
+});
