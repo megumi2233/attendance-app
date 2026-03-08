@@ -40,3 +40,24 @@ Route::get('/admin/attendance/list', function () {
 Route::get('/admin/attendance/detail/{id}', function () {
     return view('admin.attendance.detail');
 });
+
+// 【管理者】スタッフ一覧画面（仮）
+Route::get('/admin/staff/list', function () {
+    return view('admin.staff.index');
+});
+
+// 【管理者】スタッフ別勤怠一覧画面（仮）
+// ※ {id} には 1 や 2 などの数字が入ります
+Route::get('/admin/staff/{id}', function () {
+    return view('admin.staff.show');
+});
+
+// 【管理者】申請一覧画面（仮）
+Route::get('/admin/request/list', function () {
+    return view('admin.request.index');
+});
+
+// 【管理者】修正申請承認画面（仮）
+Route::get('/admin/request/approve/{id}', function () {
+    return view('admin.request.approve');
+});

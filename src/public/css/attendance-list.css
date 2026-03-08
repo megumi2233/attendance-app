@@ -21,15 +21,16 @@
     background-color: #fff; /* 👈 白い箱にする！ */
     padding: 15px 30px;
     margin: 0 auto 20px auto;
-    border-radius: 5px; /* 少し角を丸く */
+    border-radius: 15px; /* 少し角を丸く */
     max-width: 1000px;
 }
 
+/* 矢印ボタンの設定（文字の矢印用） */
 .date-selector-btn {
-    color: #888888; /* 👈 黒から灰色に変更！ */
-    font-weight: bold; /* 👈 太字を追加！ */
+    color: #888888;
+    font-weight: 900; /* 👈 文字の限界まで太く！ */
     text-decoration: none;
-    font-size: 16px; /* 👈 ついでに文字も少し大きく！ */
+    font-size: 16px;  /* 👈 少し大きめにして存在感を出す！ */
 }
 
 .date-selector-current {
@@ -37,13 +38,17 @@
     font-weight: bold;
 }
 
-/* ④ テーブルを白く囲む */
+/* ④ テーブルを白く囲む（✨ここを角丸仕様に書き換えました！✨） */
 .attendance-table {
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
-    border-collapse: collapse;
-    background-color: #fff; /* 👈 白い箱にする！ */
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #fff;
+    border: none; /* 👈 1px solid #e0e0e0; から none（無し）に書き換えて枠を消す！ */
+    border-radius: 15px;
+    overflow: hidden;
 }
 
 /* ⑤ テーブルの基本設定（文字の隙間を広げる！） */
@@ -87,4 +92,30 @@
     vertical-align: middle; /* 文字の高さの真ん中に合わせる */
     margin-right: 8px;      /* 右の文字（2023/06）との間に隙間をあける */
     margin-bottom: 4px;     /* 少しだけ上に持ち上げる微調整 */
+}
+
+/* 👇 【新規追加】CSV出力ボタンのエリア（右寄せ） */
+.export-actions {
+    max-width: 1000px;
+    margin: 20px auto 0 auto;
+    display: flex;
+    justify-content: flex-end; /* 右端に寄せる魔法 */
+}
+
+/* CSV出力ボタンのデザイン */
+.export-btn {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
+
+/* 👇 【新規追加】タイトルの直後にテーブルが来る場合（日付パーツがない画面）だけ、上に隙間を作る魔法！ */
+.section-title + .attendance-table {
+    margin-top: 80px; /* 👈 ここで隙間をグッと広げます！ */
 }
