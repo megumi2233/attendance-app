@@ -5,7 +5,10 @@ use App\Http\Controllers\AuthController;
 
 // 👇これはもともとある警備員さんの壁
 Route::middleware('auth')->group(function () {
-    Route::get('/', [AuthController::class, 'index']);
+    // 💡 エラーの原因だった AuthController をやめて、打刻画面へ自動移動させる！
+    Route::get('/', function () {
+        return redirect('/attendance');
+    });
 }); // 👈 ここで壁（グループ）は終わり！
 
 // ==========================================
