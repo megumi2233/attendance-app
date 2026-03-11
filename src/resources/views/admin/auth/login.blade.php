@@ -10,11 +10,11 @@
 <div class="login-form">
     <h1 class="main-title">管理者ログイン</h1>
 
-    <form action="/admin/login" method="post">
+    <form action="/admin/login" method="post" novalidate>
         @csrf
         <div class="form-group">
             <label class="form-label" for="email">メールアドレス</label>
-            <input class="form-input" type="email" name="email" id="email" value="{{ old('email') }}">
+            <input class="form-input" type="text" name="email" id="email" value="{{ old('email') }}">
             @error('email')
             <p class="form-error">{{ $message }}</p>
             @enderror

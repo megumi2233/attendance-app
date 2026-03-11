@@ -10,7 +10,7 @@
 <div class="register-form">
     <h1 class="main-title">会員登録</h1>
     
-    <form action="/register" method="post">
+    <form action="/register" method="post" novalidate>
         @csrf
         <div class="form-group">
             <label class="form-label" for="name">名前</label>
@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
             <label class="form-label" for="email">メールアドレス</label>
-            <input class="form-input" type="email" name="email" id="email" value="{{ old('email') }}">
+            <input class="form-input" type="text" name="email" id="email" value="{{ old('email') }}">
             @error('email')
             <p class="form-error">{{ $message }}</p>
             @enderror

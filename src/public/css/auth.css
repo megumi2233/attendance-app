@@ -55,9 +55,10 @@
 
 .form-error {
     color: red;
-    font-size: 12px;
+    font-size: 14px;
     margin-top: 5px;
     margin-bottom: 0;
+    font-weight: bold;
 }
 
 .register-link,
