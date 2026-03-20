@@ -172,3 +172,19 @@
     text-align: center;
     font-weight: bold;
 }
+
+/* 成功メッセージのスタイル */
+.success-message {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 入力エラーメッセージのスタイル */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: bold;
+}

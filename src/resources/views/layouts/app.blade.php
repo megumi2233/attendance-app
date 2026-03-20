@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     @yield('css')
+    @livewireStyles  {{-- 🌟 魔法の粉①：</head>の直前に配置！ --}}
 </head>
 <body>
     <header class="header">
@@ -47,8 +48,11 @@
         </nav>
         @endif
     </header>
+    
     <main>
         @yield('content')
     </main>
+
+    @livewireScripts {{-- 🌟 魔法の粉②：</body>の直前に配置！ --}}
 </body>
 </html>
