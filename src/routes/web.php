@@ -7,8 +7,10 @@ use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceListController;
 use App\Http\Controllers\AttendanceDetailController; // 詳細画面の頭脳
-// 👇 🌟 追加ポイント1：申請一覧の頭脳を呼び出す！
 use App\Http\Controllers\StampCorrectionRequestController; 
+
+// 👇 🌟 追加ポイント①：店長用の「勤怠一覧」の頭脳を呼び出す！
+use App\Http\Controllers\Admin\AdminAttendanceListController;
 
 
 // ==========================================
@@ -55,7 +57,6 @@ Route::middleware('auth')->group(function () {
     // =======================================
     // 🌟 本物の「申請一覧」のルート！（書き換え完了！）
     // =======================================
-    // 👇 🌟 追加ポイント2：仮ルートを消して、設計書通りの本物ルートに繋ぎました！
     Route::get('/stamp_correction_request/list', [StampCorrectionRequestController::class, 'index']);
 });
 
@@ -69,10 +70,13 @@ Route::get('/admin/login', [AdminLoginController::class, 'create']);
 Route::post('/admin/login', [AdminLoginController::class, 'store']); 
 Route::post('/admin/logout', [AdminLoginController::class, 'destroy']); 
 
-// テスト用の管理者向け仮ルート
-Route::get('/admin/attendance/list', function () {
-    return view('admin.attendance.index');
-});
+// =======================================
+// 👇 🌟 追加ポイント②：仮ルートを消して、本物に繋ぎ直す！
+// =======================================
+Route::get('/admin/attendance/list', [AdminAttendanceListController::class, 'index']);
+
+
+// テスト用の管理者向け仮ルート（残りの画面用）
 Route::get('/admin/attendance/detail/{id}', function () {
     return view('admin.attendance.detail');
 });
