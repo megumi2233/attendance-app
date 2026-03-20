@@ -1,15 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth; // 🌟 追加ポイント①：誰がログインしているか確認するツール
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\UserLoginController; 
 use App\Http\Controllers\Admin\AdminLoginController; 
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceListController;
-use App\Http\Controllers\AttendanceDetailController; // 詳細画面の頭脳
+use App\Http\Controllers\AttendanceDetailController;
 use App\Http\Controllers\StampCorrectionRequestController; 
-
-// 👇 🌟 追加ポイント①：店長用の「勤怠一覧」の頭脳を呼び出す！
 use App\Http\Controllers\Admin\AdminAttendanceListController;
 
 
@@ -17,7 +16,6 @@ use App\Http\Controllers\Admin\AdminAttendanceListController;
 // 👤 一般ユーザー（Staff）用の本物ルート
 // ==========================================
 
-// 未ログインの人だけが入れるルート（登録とログイン）
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisteredUserController::class, 'create']);
     Route::post('/register', [RegisteredUserController::class, 'store']);
@@ -25,39 +23,24 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [UserLoginController::class, 'store']); 
 });
 
-// ログイン済みの一般ユーザーだけが入れるルート
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [UserLoginController::class, 'destroy']); 
     
-    // 👇 / にアクセスしたら打刻画面へ自動移動させる
     Route::get('/', function () {
         return redirect('/attendance');
     });
 
-    // =======================================
-    // 🌟 本物の打刻機能のルート！
-    // =======================================
-    Route::get('/attendance', [AttendanceController::class, 'index']); // 画面表示
-    Route::post('/attendance/start', [AttendanceController::class, 'startWork']); // 出勤ボタン
-    Route::post('/attendance/end', [AttendanceController::class, 'endWork']); // 退勤ボタン
-    Route::post('/attendance/break/start', [AttendanceController::class, 'startBreak']); // 休憩入ボタン
-    Route::post('/attendance/break/end', [AttendanceController::class, 'endBreak']); // 休憩戻ボタン
+    Route::get('/attendance', [AttendanceController::class, 'index']); 
+    Route::post('/attendance/start', [AttendanceController::class, 'startWork']); 
+    Route::post('/attendance/end', [AttendanceController::class, 'endWork']); 
+    Route::post('/attendance/break/start', [AttendanceController::class, 'startBreak']); 
+    Route::post('/attendance/break/end', [AttendanceController::class, 'endBreak']); 
 
-    // =======================================
-    // 🌟 本物の「勤怠一覧」のルート！
-    // =======================================
     Route::get('/attendance/list', [AttendanceListController::class, 'index']);
-
-    // =======================================
-    // 🌟 本物の「勤怠詳細」のルート！
-    // =======================================
     Route::get('/attendance/detail/{id}', [AttendanceDetailController::class, 'show']);
     Route::post('/attendance/detail/{id}', [AttendanceDetailController::class, 'store']);
 
-    // =======================================
-    // 🌟 本物の「申請一覧」のルート！（書き換え完了！）
-    // =======================================
-    Route::get('/stamp_correction_request/list', [StampCorrectionRequestController::class, 'index']);
+    // ※ ここにあった一般ユーザーの「申請一覧」は、管理者とURLが被るため、一番下に移動しました！
 });
 
 
@@ -65,14 +48,10 @@ Route::middleware('auth')->group(function () {
 // 👑 管理者（Admin）用の本物ルート
 // ==========================================
 
-// 画面表示(GET)、ログイン処理(POST)、ログアウト処理(POST)をそれぞれ本物へ接続！
 Route::get('/admin/login', [AdminLoginController::class, 'create']); 
 Route::post('/admin/login', [AdminLoginController::class, 'store']); 
 Route::post('/admin/logout', [AdminLoginController::class, 'destroy']); 
 
-// =======================================
-// 👇 🌟 追加ポイント②：仮ルートを消して、本物に繋ぎ直す！
-// =======================================
 Route::get('/admin/attendance/list', [AdminAttendanceListController::class, 'index']);
 
 
@@ -86,9 +65,33 @@ Route::get('/admin/staff/list', function () {
 Route::get('/admin/staff/{id}', function () {
     return view('admin.staff.show');
 });
-Route::get('/admin/request/list', function () {
-    return view('admin.request.index');
+
+
+// ==========================================
+// 🌟 難関！「申請一覧」と「承認画面」のルート
+// ==========================================
+
+// 👇 ① 管理者の「承認画面」（設計書PG13通り！）
+Route::get('/stamp_correction_request/approve/{attendance_correct_request_id}', function () {
+    return view('admin.stamp_correction_request.approve');
 });
-Route::get('/admin/request/approve/{id}', function () {
-    return view('admin.request.approve');
+
+// 👇 ② 難関！「申請一覧」（設計書PG06・PG12通り！）
+// 📝 要件：「一般ユーザーと同じパスを使用。認証ミドルウェアで区別」
+Route::get('/stamp_correction_request/list', function () {
+    
+    // 🌟 区別1：もし店長（admin）の認証ミドルウェアを通っていたら…
+    if (Auth::guard('admin')->check()) {
+        // 管理者用の本物頭脳（AdminStampCorrectionRequestController）を呼び出す！
+        return app()->call([App\Http\Controllers\Admin\AdminStampCorrectionRequestController::class, 'index']);
+    }
+    
+    // 🌟 区別2：もし一般ユーザー（web）の認証ミドルウェアを通っていたら…
+    if (Auth::check()) {
+        // 一般ユーザー用の本物頭脳（StampCorrectionRequestController）を呼び出す！
+        return app()->call([App\Http\Controllers\StampCorrectionRequestController::class, 'index']);
+    }
+
+    // どちらの認証も通っていなければ、ログイン画面へ弾く！
+    return redirect('/login');
 });
