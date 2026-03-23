@@ -21,7 +21,8 @@ class CorrectionRequest extends FormRequest
             'end_time' => ['required', 'date_format:H:i', 'after:start_time'],
             
             // ※休憩は「追加枠（空っぽ）」が送られてくることがあるので nullable のままで正解です！
-            'break_times.*.start_time' => ['nullable', 'date_format:H:i', 'before:end_time'],
+            // 👇 🌟 ここ大正解！ 'after:start_time' が完璧に入っています！
+            'break_times.*.start_time' => ['nullable', 'date_format:H:i', 'after:start_time', 'before:end_time'],
             'break_times.*.end_time' => [
                 'nullable', 
                 'date_format:H:i', 
@@ -41,7 +42,11 @@ class CorrectionRequest extends FormRequest
             // 🌟 必須に戻したので、未入力の時のメッセージも追加！
             'end_time.required' => '退勤時間を入力してください', 
             
-            'end_time.after' => '出勤時間が不適切な値です',
+            'end_time.after' => '出勤時間もしくは退勤時間が不適切な値です',
+
+            // 👇 🌟 ここが惜しかったところ！新しいルール（after）用のメッセージを追加しました！
+            'break_times.*.start_time.after' => '休憩時間が不適切な値です',
+
             'break_times.*.start_time.before' => '休憩時間が不適切な値です',
             'break_times.*.end_time.after' => '休憩時間が不適切な値です',
             'break_times.*.end_time.before' => '休憩時間もしくは退勤時間が不適切な値です',
