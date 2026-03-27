@@ -10,8 +10,9 @@ use App\Http\Controllers\AttendanceListController;
 use App\Http\Controllers\AttendanceDetailController;
 use App\Http\Controllers\StampCorrectionRequestController; 
 use App\Http\Controllers\Admin\AdminAttendanceListController;
-// 👇 🌟 追加！店長用の詳細画面の頭脳を呼び出す！
 use App\Http\Controllers\Admin\AdminAttendanceDetailController;
+// 👇 🌟 追加！スタッフ一覧用の頭脳を呼び出す！
+use App\Http\Controllers\Admin\AdminStaffController;
 
 
 // ==========================================
@@ -56,16 +57,18 @@ Route::post('/admin/logout', [AdminLoginController::class, 'destroy']);
 Route::get('/admin/attendance/list', [AdminAttendanceListController::class, 'index']);
 
 // =======================================
-// 👇 🌟 変更！管理者の「勤怠詳細・直接修正」ルート（本物に繋ぎ直しました！）
+// 管理者の「勤怠詳細・直接修正」ルート
 // =======================================
 Route::get('/admin/attendance/detail/{id}', [AdminAttendanceDetailController::class, 'show']);
 Route::post('/admin/attendance/detail/{id}', [AdminAttendanceDetailController::class, 'update']);
 
 
-// テスト用の管理者向け仮ルート（残りの画面用）
-Route::get('/admin/staff/list', function () {
-    return view('admin.staff.index');
-});
+// =======================================
+// 👇 🌟 変更！管理者の「スタッフ一覧」ルート（本物に繋ぎ直しました！）
+// =======================================
+Route::get('/admin/staff/list', [AdminStaffController::class, 'index']);
+
+// ※この下はまだ仮ルートのまま残しておきます！
 Route::get('/admin/staff/{id}', function () {
     return view('admin.staff.show');
 });
