@@ -11,8 +11,9 @@ use App\Http\Controllers\AttendanceDetailController;
 use App\Http\Controllers\StampCorrectionRequestController; 
 use App\Http\Controllers\Admin\AdminAttendanceListController;
 use App\Http\Controllers\Admin\AdminAttendanceDetailController;
-// 👇 🌟 追加！スタッフ一覧用の頭脳を呼び出す！
 use App\Http\Controllers\Admin\AdminStaffController;
+// 👇 🌟 追加！スタッフ別勤怠用の頭脳を呼び出す！
+use App\Http\Controllers\Admin\AdminStaffAttendanceController;
 
 
 // ==========================================
@@ -64,14 +65,19 @@ Route::post('/admin/attendance/detail/{id}', [AdminAttendanceDetailController::c
 
 
 // =======================================
-// 👇 🌟 変更！管理者の「スタッフ一覧」ルート（本物に繋ぎ直しました！）
+// 管理者の「スタッフ一覧」ルート
 // =======================================
 Route::get('/admin/staff/list', [AdminStaffController::class, 'index']);
 
-// ※この下はまだ仮ルートのまま残しておきます！
-Route::get('/admin/staff/{id}', function () {
-    return view('admin.staff.show');
-});
+// 👇 🌟 ここを書き換えました！仮ルートから本物へ進化！
+// ==========================================
+// 👤 管理者の「スタッフ別勤怠詳細・CSV出力」ルート
+// ==========================================
+// ① 画面を表示するルート（設計書どおりのURLに修正！）
+Route::get('/admin/attendance/staff/{id}', [AdminStaffAttendanceController::class, 'index']);
+
+// ② CSVをダウンロードする専用ルート（新しく追加！）
+Route::get('/admin/attendance/staff/{id}/export', [AdminStaffAttendanceController::class, 'exportCsv']);
 
 
 // ==========================================

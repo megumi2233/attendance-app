@@ -27,7 +27,7 @@
                 <td>{{ $user->email }}</td>
                 
                 {{-- 👇 🌟 その人のID（$user->id）をURLに埋め込んで、個別の詳細画面へ案内する！ --}}
-                <td><a href="/admin/staff/{{ $user->id }}" class="detail-link">詳細</a></td>
+                <td><a href="/admin/attendance/staff/{{ $user->id }}" class="detail-link">詳細</a></td>
             </tr>
             @endforeach
         </tbody>
