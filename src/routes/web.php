@@ -95,14 +95,14 @@ Route::get('/stamp_correction_request/list', function () {
     
     // 区別1：もし店長（admin）の認証ミドルウェアを通っていたら…
     if (Auth::guard('admin')->check()) {
-        // 管理者用の本物頭脳（AdminStampCorrectionRequestController）を呼び出す！
-        return app()->call([App\Http\Controllers\Admin\AdminStampCorrectionRequestController::class, 'index']);
+        // 👇 🌟 修正！ コントローラーを作って(make)から、index()を呼び出す！
+        return app()->make(App\Http\Controllers\Admin\AdminStampCorrectionRequestController::class)->index();
     }
     
     // 区別2：もし一般ユーザー（web）の認証ミドルウェアを通っていたら…
     if (Auth::check()) {
-        // 一般ユーザー用の本物頭脳（StampCorrectionRequestController）を呼び出す！
-        return app()->call([App\Http\Controllers\StampCorrectionRequestController::class, 'index']);
+        // 👇 🌟 修正！ こっちも作って(make)から、index()を呼び出す！
+        return app()->make(App\Http\Controllers\StampCorrectionRequestController::class)->index();
     }
 
     // どちらの認証も通っていなければ、ログイン画面へ弾く！

@@ -22,23 +22,38 @@ class RequestTabs extends Component
 
     public function render()
     {
-        $userId = Auth::id();
+        // ========================================================
+        // 🕵️‍♀️ ① まずは「承認待ち」と「承認済み」を探す基本の準備！
+        // ========================================================
+        // （※ with('attendance.user') とすることで、後で画面で名前を出す時にシステムが重くならないプロの裏技です！）
+        $pendingQuery = StampCorrectionRequest::with('attendance.user')->where('status', '承認待ち');
+        $approvedQuery = StampCorrectionRequest::with('attendance.user')->where('status', '承認済み');
 
-        // ① 自分の「承認待ち」データを探し出す
-        $pendingRequests = StampCorrectionRequest::with('attendance')
-            ->where('status', '承認待ち')
-            ->whereHas('attendance', function ($query) use ($userId) {
-                $query->where('user_id', $userId);
-            })
-            ->get();
 
-        // ② 自分の「承認済み」データを探し出す
-        $approvedRequests = StampCorrectionRequest::with('attendance')
-            ->where('status', '承認済み')
-            ->whereHas('attendance', function ($query) use ($userId) {
+        // ========================================================
+        // 👑 ② 【ここがハイブリッドの魔法！】ログインしてるのは誰だ！？
+        // ========================================================
+        // もしログインしているのが「店長（admin）」じゃなかったら（＝一般スタッフなら）
+        if (!Auth::guard('admin')->check()) {
+            
+            // 自分のIDを取得して…
+            $userId = Auth::id();
+            
+            // 「自分の出勤データに紐づく申請だけ」に絞り込む！（店長の場合はここを無視するので全員分になります！）
+            $pendingQuery->whereHas('attendance', function ($query) use ($userId) {
                 $query->where('user_id', $userId);
-            })
-            ->get();
+            });
+            $approvedQuery->whereHas('attendance', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            });
+        }
+
+
+        // ========================================================
+        // 📦 ③ 準備した条件で、実際にデータベースから持ってくる！
+        // ========================================================
+        $pendingRequests = $pendingQuery->get();
+        $approvedRequests = $approvedQuery->get();
 
         // 探し出したデータを、Livewire専用の画面（blade）に渡す！
         return view('livewire.request-tabs', compact('pendingRequests', 'approvedRequests'));
