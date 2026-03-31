@@ -7,62 +7,78 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Models\Attendance;
 use App\Models\BreakTime;
-use App\Models\StampCorrectionRequest; // 🌟 追加ポイント①：修正申請のモデルを呼び出す！
+use App\Models\StampCorrectionRequest;
+use App\Models\StampCorrectionRequestBreakTime;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
-        // ① 【管理者】の作成（めぐみさんが書いた設計図をそのまま1回使う！）
+        // 👇 🌟 追加！ダミーデータを作る「Faker職人さん」をここで正式に召喚します！
+        $faker = \Faker\Factory::create();
+
+        // ①【管理者】の作成
         Admin::factory()->create();
 
-        // ② 【一般ユーザー（テスト用）】の作成（ここで特別注文を出します！）
+        // ②【一般ユーザー（テスト用）】の作成
         $testUser = User::factory()->create([
             'name' => '一般テスト',
             'email' => 'test@example.com',
-            'password' => bcrypt('password'), // 暗号化してパスワードを設定
+            'password' => bcrypt('password'),
         ]);
 
-        // ③ 【モブ一般ユーザー】を10人大量生産！
+        // ③【モブ一般ユーザー】を10人大量生産！
         $mobUsers = User::factory(10)->create();
 
-        // ④ テスト用ユーザーの【勤怠と休憩データ】をまとめて30日分作る魔法！
+        // ④ テスト用ユーザーの【勤怠と休憩データ】をまとめて30日分作る！
         Attendance::factory(30)->create([
-            'user_id' => $testUser->id, // 全部テストユーザーの勤怠にする！
-        ])->each(function ($attendance) {
-            // 勤怠1日分が作られるたびに、それに紐づく「休憩データ」を1回分作る！
+            'user_id' => $testUser->id,
+        // 👇 🌟 修正！ use ($faker) をつけて、職人さんをこのループ（箱）の中に入れます！
+        ])->each(function ($attendance) use ($faker) {
+            
             BreakTime::factory()->create([
                 'attendance_id' => $attendance->id,
             ]);
 
-            // 🌟 追加ポイント②：3回に1回くらいの確率で、テストユーザーの「修正申請」も作る！
+            // 🌟 もし修正申請を作るなら…
             if (rand(1, 3) === 1) {
-                StampCorrectionRequest::factory()->create([
+                $request = StampCorrectionRequest::factory()->create([
                     'attendance_id' => $attendance->id,
-                    'date' => $attendance->date, // 日付は元の勤怠に合わせる！
+                    'date' => $attendance->date,
+                ]);
+
+                // 👇 🌟 修正！ fake() ではなく、さっき呼んだ $faker を使います！
+                StampCorrectionRequestBreakTime::create([
+                    'stamp_correction_request_id' => $request->id,
+                    'start_time' => $faker->dateTimeBetween('12:00:00', '12:15:00')->format('H:i:s'),
+                    'end_time' => $faker->dateTimeBetween('12:45:00', '13:15:00')->format('H:i:s'),
                 ]);
             }
         });
-        
-        // ⑤ ついでにモブユーザー10人にも、適当に5日分くらい勤怠を作っておく（見栄えのため！）
+
+        // ⑤ モブユーザー10人にも、適当に5日分くらい勤怠を作っておく
         foreach ($mobUsers as $mob) {
             Attendance::factory(5)->create([
                 'user_id' => $mob->id,
-            ])->each(function ($attendance) {
+            // 👇 🌟 修正！ ここでも use ($faker) をつけて職人さんを入れます！
+            ])->each(function ($attendance) use ($faker) {
+                
                 BreakTime::factory()->create([
                     'attendance_id' => $attendance->id,
                 ]);
 
-                // 🌟 追加ポイント③：モブユーザーにもランダムで申請を出させておく！（後で店長画面を見た時、見栄えが良くなります！）
+                // 🌟 モブユーザーも申請を出す！
                 if (rand(1, 3) === 1) {
-                    StampCorrectionRequest::factory()->create([
+                    $request = StampCorrectionRequest::factory()->create([
                         'attendance_id' => $attendance->id,
                         'date' => $attendance->date,
+                    ]);
+
+                    // 👇 🌟 修正！ ここも $faker を使います！
+                    StampCorrectionRequestBreakTime::create([
+                        'stamp_correction_request_id' => $request->id,
+                        'start_time' => $faker->dateTimeBetween('12:00:00', '12:15:00')->format('H:i:s'),
+                        'end_time' => $faker->dateTimeBetween('12:45:00', '13:15:00')->format('H:i:s'),
                     ]);
                 }
             });

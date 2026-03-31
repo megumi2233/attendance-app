@@ -23,4 +23,10 @@ class StampCorrectionRequest extends Model
     {
         return $this->belongsTo(Attendance::class);
     }
+
+    // 👇 🌟 追加！この修正申請には、複数の「申請された休憩データ」があります (hasMany)
+    public function stampCorrectionRequestBreakTimes()
+    {
+        return $this->hasMany(StampCorrectionRequestBreakTime::class);
+    }
 }

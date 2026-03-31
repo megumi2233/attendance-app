@@ -12,8 +12,9 @@ use App\Http\Controllers\StampCorrectionRequestController;
 use App\Http\Controllers\Admin\AdminAttendanceListController;
 use App\Http\Controllers\Admin\AdminAttendanceDetailController;
 use App\Http\Controllers\Admin\AdminStaffController;
-// 👇 🌟 追加！スタッフ別勤怠用の頭脳を呼び出す！
 use App\Http\Controllers\Admin\AdminStaffAttendanceController;
+// 👇 🌟 追加！承認画面用の頭脳を上に読み込んでおきます！
+use App\Http\Controllers\Admin\AdminStampCorrectionRequestController;
 
 
 // ==========================================
@@ -69,7 +70,6 @@ Route::post('/admin/attendance/detail/{id}', [AdminAttendanceDetailController::c
 // =======================================
 Route::get('/admin/staff/list', [AdminStaffController::class, 'index']);
 
-// 👇 🌟 ここを書き換えました！仮ルートから本物へ進化！
 // ==========================================
 // 👤 管理者の「スタッフ別勤怠詳細・CSV出力」ルート
 // ==========================================
@@ -84,10 +84,12 @@ Route::get('/admin/attendance/staff/{id}/export', [AdminStaffAttendanceControlle
 // 🌟 難関！「申請一覧」と「承認画面」のルート
 // ==========================================
 
-// ① 管理者の「承認画面」（設計書PG13通り！）
-Route::get('/stamp_correction_request/approve/{attendance_correct_request_id}', function () {
-    return view('admin.stamp_correction_request.approve');
-});
+// 👇 🌟 ここを「仮のルート」から「本物のルート」に書き換えました！
+// ① 管理者の「承認画面」を開く（GET）
+Route::get('/stamp_correction_request/approve/{attendance_correct_request_id}', [AdminStampCorrectionRequestController::class, 'show']);
+
+// 👇 🌟 ついでに追加！管理者が「承認」ボタンを押した時（POST）のルート！
+Route::post('/stamp_correction_request/approve/{attendance_correct_request_id}', [AdminStampCorrectionRequestController::class, 'approve']);
 
 // ② 難関！「申請一覧」（設計書PG06・PG12通り！）
 // 📝 要件：「一般ユーザーと同じパスを使用。認証ミドルウェアで区別」
@@ -95,13 +97,13 @@ Route::get('/stamp_correction_request/list', function () {
     
     // 区別1：もし店長（admin）の認証ミドルウェアを通っていたら…
     if (Auth::guard('admin')->check()) {
-        // 👇 🌟 修正！ コントローラーを作って(make)から、index()を呼び出す！
-        return app()->make(App\Http\Controllers\Admin\AdminStampCorrectionRequestController::class)->index();
+        // 修正！ コントローラーを作って(make)から、index()を呼び出す！
+        return app()->make(AdminStampCorrectionRequestController::class)->index();
     }
     
     // 区別2：もし一般ユーザー（web）の認証ミドルウェアを通っていたら…
     if (Auth::check()) {
-        // 👇 🌟 修正！ こっちも作って(make)から、index()を呼び出す！
+        // 修正！ こっちも作って(make)から、index()を呼び出す！
         return app()->make(App\Http\Controllers\StampCorrectionRequestController::class)->index();
     }
 

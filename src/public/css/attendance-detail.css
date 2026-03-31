@@ -188,3 +188,20 @@
     margin-top: 5px;
     font-weight: bold;
 }
+
+/* 備考用のテキスト（文字数が多いので横幅を制限せず、左寄せにする！） */
+.reason-text {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: 2px;
+    text-align: left;
+}
+
+/* 承認済み用のグレーのボタン */
+.action-button--gray {
+    background-color: #808080; /* Figmaっぽいグレー */
+    color: #fff;
+    border: none;
+    cursor: default; /* マウスを乗せても指マークにならないようにする */
+}
