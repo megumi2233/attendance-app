@@ -101,6 +101,18 @@ make init
 
 ---
 
+## 🚀 動作確認・テスト
+
+アプリケーションが要件を満たし、正常に動作することを「手動」と「自動テスト」の両面から確認済みです。
+
+### ✅ 手動による動作確認
+環境構築完了後、以下の手順でスムーズに動作確認を行っていただけます。
+
+- **【メール認証機能の動作確認について】**
+新規会員登録直後は自動的にログイン状態となり、仕様上、メール認証誘導画面にはログアウトボタンが配置されておりません（画面設計準拠のため）。
+そのため、「メール認証未完了状態でログインを試みる」という要件（メール認証誘導画面への遷移）を確認される際は、**シークレットウィンドウ（プライベートブラウザ）** をご使用いただくか、ブラウザのCookieを削除してテストを行ってください。
+---
+
 ### 🧩 View ファイルの作成
 resources/views/layouts/app.blade.php   (一般・管理者：全画面共通のヘッダー＆土台)
 resources/views/auth/register.blade.php (一般：会員登録画面)
@@ -109,6 +121,7 @@ resources/views/attendance/index.blade.php  (一般：勤怠登録画面)
 resources/views/attendance/list.blade.php   (一般：勤怠一覧画面)
 resources/views/attendance/detail.blade.php (一般：勤怠詳細画面)
 resources/views/stamp_correction_request/index.blade.php     (一般：申請一覧画面)
+resources/views/auth/verify-email.blade.php   (一般：メール認証誘導画面)
 resources/views/admin/auth/login.blade.php  (管理者：ログイン画面)
 resources/views/admin/attendance/index.blade.php  (管理者：勤怠一覧)
 resources/views/admin/attendance/detail.blade.php (管理者：勤怠詳細)
@@ -121,7 +134,7 @@ resources/views/admin/stamp_correction_request/approve.blade.php　　(管理者
 
 ### 🎨 CSS ファイルの作成（✨は使い回しコンポーネント）
 public/css/common.css (✨全画面共通のリセット＆ヘッダー用)
-public/css/auth.css (✨一般・管理者のログイン・登録画面用)
+public/css/auth.css (✨一般・管理者のログイン・登録画面・メール認証誘導画面用)
 public/css/attendance.css (一般：勤怠登録画面)
 
 👇 【最強の使い回しCSS】

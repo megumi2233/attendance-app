@@ -13,7 +13,6 @@ use App\Http\Controllers\Admin\AdminAttendanceListController;
 use App\Http\Controllers\Admin\AdminAttendanceDetailController;
 use App\Http\Controllers\Admin\AdminStaffController;
 use App\Http\Controllers\Admin\AdminStaffAttendanceController;
-// 👇 🌟 追加！承認画面用の頭脳を上に読み込んでおきます！
 use App\Http\Controllers\Admin\AdminStampCorrectionRequestController;
 
 
@@ -28,8 +27,15 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [UserLoginController::class, 'store']); 
 });
 
+// 👇 🌟 変更ポイント①：「ログインさえしていればOK」なグループ
+// （未認証で閉じ込められても、ログアウトだけはできるように逃げ道を作っておきます！）
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [UserLoginController::class, 'destroy']); 
+});
+
+// 👇 🌟 変更ポイント②：最強の関所「verified」を追加したグループ！
+// （ログインしていて、かつ「メール認証済み」の人だけが入れるVIPルームです！）
+Route::middleware(['auth', 'verified'])->group(function () {
     
     Route::get('/', function () {
         return redirect('/attendance');
@@ -57,26 +63,10 @@ Route::post('/admin/login', [AdminLoginController::class, 'store']);
 Route::post('/admin/logout', [AdminLoginController::class, 'destroy']); 
 
 Route::get('/admin/attendance/list', [AdminAttendanceListController::class, 'index']);
-
-// =======================================
-// 管理者の「勤怠詳細・直接修正」ルート
-// =======================================
 Route::get('/admin/attendance/detail/{id}', [AdminAttendanceDetailController::class, 'show']);
 Route::post('/admin/attendance/detail/{id}', [AdminAttendanceDetailController::class, 'update']);
-
-
-// =======================================
-// 管理者の「スタッフ一覧」ルート
-// =======================================
 Route::get('/admin/staff/list', [AdminStaffController::class, 'index']);
-
-// ==========================================
-// 👤 管理者の「スタッフ別勤怠詳細・CSV出力」ルート
-// ==========================================
-// ① 画面を表示するルート（設計書どおりのURLに修正！）
 Route::get('/admin/attendance/staff/{id}', [AdminStaffAttendanceController::class, 'index']);
-
-// ② CSVをダウンロードする専用ルート（新しく追加！）
 Route::get('/admin/attendance/staff/{id}/export', [AdminStaffAttendanceController::class, 'exportCsv']);
 
 
@@ -84,29 +74,25 @@ Route::get('/admin/attendance/staff/{id}/export', [AdminStaffAttendanceControlle
 // 🌟 難関！「申請一覧」と「承認画面」のルート
 // ==========================================
 
-// 👇 🌟 ここを「仮のルート」から「本物のルート」に書き換えました！
-// ① 管理者の「承認画面」を開く（GET）
 Route::get('/stamp_correction_request/approve/{attendance_correct_request_id}', [AdminStampCorrectionRequestController::class, 'show']);
-
-// 👇 🌟 ついでに追加！管理者が「承認」ボタンを押した時（POST）のルート！
 Route::post('/stamp_correction_request/approve/{attendance_correct_request_id}', [AdminStampCorrectionRequestController::class, 'approve']);
 
-// ② 難関！「申請一覧」（設計書PG06・PG12通り！）
-// 📝 要件：「一般ユーザーと同じパスを使用。認証ミドルウェアで区別」
 Route::get('/stamp_correction_request/list', function () {
     
-    // 区別1：もし店長（admin）の認証ミドルウェアを通っていたら…
+    // 区別1：店長（admin）ならそのまま通す
     if (Auth::guard('admin')->check()) {
-        // 修正！ コントローラーを作って(make)から、index()を呼び出す！
         return app()->make(AdminStampCorrectionRequestController::class)->index();
     }
     
-    // 区別2：もし一般ユーザー（web）の認証ミドルウェアを通っていたら…
+    // 区別2：一般ユーザー（web）の場合
     if (Auth::check()) {
-        // 修正！ こっちも作って(make)から、index()を呼び出す！
+        // 👇 🌟 変更ポイント③：URLを直接打ち込んで突破しようとする未認証ユーザーを弾き飛ばす関所！
+        if (!Auth::user()->hasVerifiedEmail()) {
+            return redirect('/email/verify'); // 誘導画面へ強制送還！
+        }
         return app()->make(App\Http\Controllers\StampCorrectionRequestController::class)->index();
     }
 
-    // どちらの認証も通っていなければ、ログイン画面へ弾く！
+    // どちらの認証も通っていなければログイン画面へ
     return redirect('/login');
 });

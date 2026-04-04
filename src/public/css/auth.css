@@ -77,3 +77,68 @@
 .login-form {
     padding-top: 150px; /* 👈 80pxよりも大きくして、グッと下に押し下げます！ */
 }
+
+/* =========================================
+   📧 メール認証誘導画面（verify-email）のスタイル
+   ========================================= */
+.verify-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 150px; /* 画面の真ん中くらいに下げる */
+}
+
+.verify-message-box {
+    text-align: center; /* 文字もボタンも全部真ん中寄せ！ */
+    width: 100%;
+    max-width: 600px;
+}
+
+/* メッセージのテキスト */
+.verify-text {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.8; /* 行間を少し広くして読みやすく */
+    margin-bottom: 40px;
+}
+
+/* 🌟 グレーの「認証はこちらから」ボタン */
+.verify-button {
+    display: inline-block;
+    background-color: #e0e0e0; /* Figmaっぽい薄いグレー */
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 12px 40px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    text-decoration: none; /* リンクの青い下線を消す */
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.verify-button:hover {
+    background-color: #cccccc; /* マウスを乗せたら少し濃くするおまけ */
+}
+
+/* 🌟 青い「再送する」リンク（実はボタン） */
+.resend-link {
+    background: none; /* ボタンの背景を透明にする魔法 */
+    border: none;     /* ボタンの枠線を消す魔法 */
+    color: #007bff;   /* リンクっぽい青色 */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+}
+
+.resend-link:hover {
+    text-decoration: underline; /* マウスを乗せたら下線を出す */
+}
+
+/* 再送成功メッセージ */
+.verify-success-message {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 20px;
+}

@@ -31,8 +31,9 @@
             </ul>
         </nav>
 
-        {{-- 👇 ② 一般ユーザー（web）がログインしている場合のメニュー --}}
-        @elseif (Auth::check())
+        {{-- 👇 🌟 変更前：@elseif (Auth::check()) --}}
+        {{-- 👇 🌟 変更後：「メール認証済み（hasVerifiedEmail）」の条件を付け足す！ --}}
+        @elseif (Auth::check() && Auth::user()->hasVerifiedEmail())
         <nav class="header-nav">
             <ul class="header-nav-list">
                 <li class="header-nav-item"><a href="/attendance">勤怠</a></li>
