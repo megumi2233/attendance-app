@@ -87,7 +87,11 @@ Route::get('/stamp_correction_request/list', function () {
     // 区別2：一般ユーザー（web）の場合
     if (Auth::check()) {
         // 👇 🌟 変更ポイント③：URLを直接打ち込んで突破しようとする未認証ユーザーを弾き飛ばす関所！
-        if (!Auth::user()->hasVerifiedEmail()) {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        
+        // 🌟 ここを Auth::user() ではなく $user に変更！
+        if (!$user->hasVerifiedEmail()) {
             return redirect('/email/verify'); // 誘導画面へ強制送還！
         }
         return app()->make(App\Http\Controllers\StampCorrectionRequestController::class)->index();
