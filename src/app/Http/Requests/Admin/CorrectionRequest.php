@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin; // 👈 修正ポイント①：Adminがついた！
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -32,13 +32,18 @@ class CorrectionRequest extends FormRequest
     {
         return [
             'start_time.required' => '出勤時間を入力してください',
-            'start_time.before' => '出勤時間が不適切な値です',
+            
+            // 👈 修正ポイント②：店長用のメッセージになった！
+            'start_time.before' => '出勤時間もしくは退勤時間が不適切な値です',
+            
             'end_time.required' => '退勤時間を入力してください', 
             'end_time.after' => '出勤時間もしくは退勤時間が不適切な値です',
+
             'break_times.*.start_time.after' => '休憩時間が不適切な値です',
             'break_times.*.start_time.before' => '休憩時間が不適切な値です',
             'break_times.*.end_time.after' => '休憩時間が不適切な値です',
             'break_times.*.end_time.before' => '休憩時間もしくは退勤時間が不適切な値です',
+            
             'reason.required' => '備考を記入してください',
             'reason.max' => '備考は255文字以内で入力してください',
         ];

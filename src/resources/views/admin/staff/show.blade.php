@@ -49,7 +49,7 @@
                         <td>
                             {{-- 詳細リンクは、出勤データ（id）が存在する日だけ表示する！ --}}
                             @if ($data && $data['id'])
-                                <a href="/admin/attendance/detail/{{ $data['id'] }}" class="detail-link">詳細</a>
+                                <a href="/admin/attendance/{{ $data['id'] }}" class="detail-link">詳細</a>
                             @endif
                         </td>
                     </tr>

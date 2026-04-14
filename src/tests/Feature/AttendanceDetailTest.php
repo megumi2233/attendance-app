@@ -410,11 +410,11 @@ class AttendanceDetailTest extends TestCase
         $response->assertStatus(200);
         
         // 1つ目のデータが画面にあるかな？
-        $response->assertSee('2026-04-01');
+        $response->assertSee('2026/04/01');
         $response->assertSee('1つ目の申請理由');
         
         // 2つ目のデータも画面にあるかな？
-        $response->assertSee('2026-04-02');
+        $response->assertSee('2026/04/02');
         $response->assertSee('2つ目の申請理由');
 
         // ついでに「承認待ち」という文字も出ているか確認しておくとより安心です！
@@ -452,7 +452,7 @@ class AttendanceDetailTest extends TestCase
         // 👑 ここを修正！絶対に迷子にならない「正式な住所と名前」で呼び出します！
         Livewire::test(\App\Http\Livewire\RequestTabs::class) // 👈 ここが進化しました！
             ->set('tab', 'approved')   // 👈 「承認済み」タブをポチッと押す操作の代わり！
-            ->assertSee('2026-04-15')
+            ->assertSee('2026/04/15')
             ->assertSee('承認済みの確認テスト')
             ->assertSee('承認済み');
     }

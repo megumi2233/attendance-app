@@ -50,7 +50,7 @@
                     <td>{{ $attendance->getRestTime() }}</td>
                     <td>{{ $attendance->getWorkTime() }}</td>
                     
-                    <td><a href="/admin/attendance/detail/{{ $attendance->id }}" class="detail-link">詳細</a></td>
+                    <td><a href="/admin/attendance/{{ $attendance->id }}" class="detail-link">詳細</a></td>
                 </tr>
                 @endforeach
             </tbody>

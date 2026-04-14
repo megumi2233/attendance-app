@@ -63,8 +63,8 @@ Route::post('/admin/login', [AdminLoginController::class, 'store']);
 Route::post('/admin/logout', [AdminLoginController::class, 'destroy']); 
 
 Route::get('/admin/attendance/list', [AdminAttendanceListController::class, 'index']);
-Route::get('/admin/attendance/detail/{id}', [AdminAttendanceDetailController::class, 'show']);
-Route::post('/admin/attendance/detail/{id}', [AdminAttendanceDetailController::class, 'update']);
+Route::get('/admin/attendance/{id}', [AdminAttendanceDetailController::class, 'show']);
+Route::post('/admin/attendance/{id}', [AdminAttendanceDetailController::class, 'update']);
 Route::get('/admin/staff/list', [AdminStaffController::class, 'index']);
 Route::get('/admin/attendance/staff/{id}', [AdminStaffAttendanceController::class, 'index']);
 Route::get('/admin/attendance/staff/{id}/export', [AdminStaffAttendanceController::class, 'exportCsv']);

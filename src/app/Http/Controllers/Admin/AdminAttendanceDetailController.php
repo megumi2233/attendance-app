@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Attendance;
 use App\Models\BreakTime;
 use App\Models\StampCorrectionRequest;
-// 👇 🌟 めぐみさんが作ったルールの番人を呼び出す！
-use App\Http\Requests\CorrectionRequest; 
+
+// 👇 🌟 ここを修正！Adminフォルダの中の「店長専用の門番さん」を呼び出します！
+use App\Http\Requests\Admin\CorrectionRequest; 
 
 class AdminAttendanceDetailController extends Controller
 {
@@ -32,7 +33,7 @@ class AdminAttendanceDetailController extends Controller
     // ==========================================
     // 🌟 ② 修正ボタンが押された時の「データ上書き」のお仕事
     // ==========================================
-    public function update(CorrectionRequest $request, $id)
+    public function update(CorrectionRequest $request, $id) // 👈 上で店長用を呼んだので、自動的に店長用が使われます！
     {
         $attendance = Attendance::findOrFail($id);
 
