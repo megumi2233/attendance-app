@@ -1,7 +1,7 @@
 /* 画面全体の設定 */
 .attendance-detail-page {
     width: 100%;
-    background-color: #f5f5f5;
+    background-color: #F0EFF2;
     min-height: calc(100vh - 55px);
     padding: 40px 20px;
     box-sizing: border-box; /* はみ出し防止のお守り */

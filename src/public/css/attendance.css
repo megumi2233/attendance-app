@@ -10,75 +10,73 @@
     border: 0;
 }
 
+/* --- レイアウトの設定 --- */
 .attendance-page {
     display: flex;
-    justify-content: center; /* 水平方向（横）の真ん中 */
-    align-items: center;     /* 👈 【追加】垂直方向（縦）の真ん中に配置する魔法！ */
-    
-    /* 👇 【変更】上からの固定余白(padding-top)を消して、画面全体の高さにする */
-    /* 100vh = 画面の高さ100%。そこからヘッダーの高さ（約55px）を引く */
+    justify-content: center;
+    align-items: center;
+    background-color: #F0EFF2;
     min-height: calc(100vh - 55px); 
-    box-sizing: border-box; /* 👈 calcを使う時のバグを防ぐお守り */
+    box-sizing: border-box;
 }
 
 .attendance-panel {
     text-align: center;
 }
 
+/* --- ① ステータス「勤務外」の枠を復活させ、色を調整 --- */
 .status-badge {
     display: inline-block;
-    background-color: #e0e0e0;
-    color: #333;
-    padding: 5px 20px;
+    background-color: #c8c8c8; /* 👈 枠の背景色（薄いグレー）を復活！ */
+    color: #696969;           /* 文字は読みやすい濃いめの色に */
+    padding: 6px 20px;        /* 上下を少しスリムに、左右をふっくら */
     border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 18px;          /* 👈 16pxから18pxにさらに大きく！ */
+    font-weight: bold;          
     margin-bottom: 20px;
 }
 
+/* --- ② 日付の修正（標準の太さで大きく） --- */
 .current-date {
-    font-size: 24px;
-    margin-bottom: 10px;
-    font-weight: bold;
+    font-size: 34px;
+    margin-top: 0;
+    margin-bottom: 2px;
+    font-weight: normal;   /* 👈 設計図通り太字を解除！ */
+    color: #333333;
 }
 
 .current-time {
-    font-size: 64px; /* 時間は特大サイズで！ */
+    font-size: 64px;
     margin: 0 0 40px 0;
     font-weight: bold;
 }
 
+/* --- ボタンエリア --- */
 .attendance-actions {
     display: flex;
     justify-content: center;
-    gap: 20px; /* ボタンが2つ並んだ時の隙間 */
+    gap: 20px;
 }
 
-/* ボタンの共通設定 */
+/* --- ③ ボタンの共通設定（角丸を揃える） --- */
 .action-button {
-    width: 120px;
+    width: 140px;          /* 少しだけ横幅を広げると文字がゆったりします */
     padding: 15px 0;
-    border-radius: 5px;
+    border-radius: 10px;   /* 👈 5pxから10pxに変更して角を丸く！ */
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
+    transition: opacity 0.3s;
 }
 
-/* 黒いボタン（出勤・退勤） */
 .action-button--black {
     background-color: #000;
     color: #fff;
     border: none;
 }
 
-/* 白いボタン（休憩入・休憩戻） */
 .action-button--white {
     background-color: #fff;
     color: #000;
-    border: 2px solid #e0e0e0;
-}
-
-.done-message {
-    font-size: 18px;
-    font-weight: bold;
+    border: none; 
 }

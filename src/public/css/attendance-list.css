@@ -1,7 +1,7 @@
 /* ① 画面全体をグレーにして、一番下まで伸ばす */
 .attendance-list-page {
     width: 100%;
-    background-color: #f5f5f5; /* 👈 全体をグレーに！ */
+    background-color: #F0EFF2; /* 👈 全体をグレーに！ */
     min-height: calc(100vh - 55px);
     padding: 40px 20px;
 }
@@ -31,6 +31,12 @@
     font-weight: 900; /* 👈 文字の限界まで太く！ */
     text-decoration: none;
     font-size: 16px;  /* 👈 少し大きめにして存在感を出す！ */
+}
+
+/* 右矢印のときだけ左側に隙間を作る */
+.date-selector-btn:last-child .arrow-icon {
+    margin-right: 0;
+    margin-left: 5px;
 }
 
 .date-selector-current {
@@ -65,7 +71,7 @@
 .attendance-table th {
     color: #888888;
     font-size: 16px;
-    border-bottom: 4px solid #cccccc; /* 👈 1行目だけ、線をさらに太く(4px)＆少し濃くして目立たせる！ */
+    border-bottom: 4px solid #E1E1E1; /* 👈 1行目だけ、線をさらに太く(4px)＆少し濃くして目立たせる！ */
 }
 
 /* ⑦ データ行（2行目以降）の特別な設定 */
@@ -118,4 +124,18 @@
 /* 👇 【新規追加】タイトルの直後にテーブルが来る場合（日付パーツがない画面）だけ、上に隙間を作る魔法！ */
 .section-title + .attendance-table {
     margin-top: 80px; /* 👈 ここで隙間をグッと広げます！ */
+}
+
+/* --- 矢印アイコンの設定 (引っ越し分) --- */
+.arrow-icon {
+    vertical-align: middle;
+    margin-right: 5px;   /* 左矢印用 */
+    margin-left: 5px;    /* 右矢印用（あとで調整されます） */
+}
+
+/* 矢印の横にある「前月」「翌月」の文字 */
+.arrow-label {
+    vertical-align: middle;
+    color: #737373;      /* めぐみさんが見つけたこだわりの色！ */
+    font-weight: bold;   /* 太字にしてバランスを整える */
 }
