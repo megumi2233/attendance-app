@@ -12,6 +12,14 @@
     max-width: 800px;
     margin: 0 auto 50px auto; /* 下の余白を50pxに拡大！ */
     font-size: 28px;
+    /* 👇 ここを 8px solid #000 にして、paddingを追加！ */
+    border-left: 8px solid #000;
+    padding-left: 15px;
+    
+    /* 文字の高さを微調整して棒と中央を合わせる魔法 */
+    line-height: 1;
+    display: flex;
+    align-items: center;
 }
 
 /* フォーム全体の枠（背景色は無くします） */

@@ -11,6 +11,9 @@
     max-width: 1000px;
     margin: 40px auto 30px auto; /* 👈 上の余白を0から40pxに増やして下に下げる！ */
     font-size: 28px; /* 👈 【追加】文字サイズを大きく！ */
+    /* 👇 ここを 8px solid #000 にして、paddingを追加！ */
+    border-left: 8px solid #000;
+    padding-left: 15px;
 }
 
 /* 👇 【リファクタリング】③ 日付（月・日）の切り替え部分を白く囲む */

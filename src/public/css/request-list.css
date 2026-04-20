@@ -7,10 +7,20 @@
     box-sizing: border-box;
 }
 
+/* 10行目付近を書き換え！ */
 .request-list-page .section-title {
     max-width: 1000px;
     margin: 0 auto 50px auto;
     font-size: 28px;
+    
+    /* 👇 線を 8px solid #000 にして、paddingも揃えます！ */
+    border-left: 8px solid #000;
+    padding-left: 15px;
+
+    /* 他の画面と高さを合わせる魔法 */
+    line-height: 1;
+    display: flex;
+    align-items: center;
 }
 
 /* 👇 【修正】タブのデザイン */
