@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     @yield('css')
-    @livewireStyles {{-- 🌟 魔法の粉①：</head>の直前に配置！ --}}
+    @livewireStyles
 </head>
 
 <body>
@@ -17,40 +17,13 @@
             <img src="{{ asset('images/logo.png') }}" alt="COACHTECH">
         </div>
 
-        {{-- 👇 ① 管理者（admin）がログインしている場合のメニュー --}}
-        @if (Auth::guard('admin')->check())
-            <nav class="header-nav">
-                <ul class="header-nav-list">
-                    <li class="header-nav-item"><a href="/admin/attendance/list">勤怠一覧</a></li>
-                    <li class="header-nav-item"><a href="/admin/staff/list">スタッフ一覧</a></li>
-                    <li class="header-nav-item"><a href="/stamp_correction_request/list">申請一覧</a></li>
-                    <li class="header-nav-item">
-                        <form action="/admin/logout" method="post">
-                            @csrf
-                            <button class="header-nav-button" type="submit">ログアウト</button>
-                        </form>
-                    </li>
-                </ul>
-            </nav>
-
-            {{-- 👇 🌟 変更前：@elseif (Auth::check()) --}}
-            {{-- 👇 🌟 変更後：「メール認証済み（hasVerifiedEmail）」の条件を付け足す！ --}}
-            {{-- 👤 一般ユーザーかつメール認証済みの人だけ！ --}}
-            {{-- Auth::guard('user')->check() ではなく、シンプルに Auth::check() に戻します --}}
-        @elseif (Auth::check() && !Auth::guard('admin')->check() && Auth::user()->hasVerifiedEmail())
-            <nav class="header-nav">
-                <ul class="header-nav-list">
-                    <li class="header-nav-item"><a href="/attendance">勤怠</a></li>
-                    <li class="header-nav-item"><a href="/attendance/list">勤怠一覧</a></li>
-                    <li class="header-nav-item"><a href="/stamp_correction_request/list">申請</a></li>
-                    <li class="header-nav-item">
-                        <form action="/logout" method="post">
-                            @csrf
-                            <button class="header-nav-button" type="submit">ログアウト</button>
-                        </form>
-                    </li>
-                </ul>
-            </nav>
+        {{-- 🌟 プロのURL判定！ adminから始まるURLなら管理者用ブロックを呼ぶ --}}
+        @if (request()->is('admin*'))
+            @include('layouts.header-admin')
+        
+        {{-- 👤 それ以外で、メール認証済みの一般ユーザーなら一般用ブロックを呼ぶ --}}
+        @elseif (Auth::check() && Auth::user()->hasVerifiedEmail())
+            @include('layouts.header-user')
         @endif
     </header>
 
@@ -58,7 +31,7 @@
         @yield('content')
     </main>
 
-    @livewireScripts {{-- 🌟 魔法の粉②：</body>の直前に配置！ --}}
+    @livewireScripts
 </body>
 
 </html>

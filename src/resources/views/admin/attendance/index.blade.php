@@ -12,7 +12,7 @@
         <h1 class="section-title">{{ $displayDate->format('Y年n月j日') }}の勤怠</h1>
 
         <div class="date-selector">
-            <a href="/admin/attendance?date={{ $prevDate }}" class="date-selector-btn">
+            <a href="/admin/attendance/list?date={{ $prevDate }}" class="date-selector-btn">
                 <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"
                     fill="none" stroke="#B3B3B3" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="20" y1="12" x2="4" y2="12"></line>
@@ -48,7 +48,7 @@
                 {{ $displayDate->format('Y/m/d') }}
             </span>
 
-            <a href="/admin/attendance?date={{ $nextDate }}" class="date-selector-btn">
+            <a href="/admin/attendance/list?date={{ $nextDate }}" class="date-selector-btn">
                 <span class="arrow-label">翌日</span>
                 <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"
                     fill="none" stroke="#B3B3B3" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">

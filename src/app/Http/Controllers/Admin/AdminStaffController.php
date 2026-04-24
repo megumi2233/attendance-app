@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User; // 👇 🌟 一般ユーザー（スタッフ）のモデル社長を呼び出す！
 
-class AdminStaffController extends Controller
+class AdminStaffController extends AdminBaseController
 {
     // ==========================================
     // 🌟 スタッフ一覧画面を表示するお仕事

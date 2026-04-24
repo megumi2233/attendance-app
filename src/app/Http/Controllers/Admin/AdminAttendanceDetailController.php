@@ -11,7 +11,7 @@ use App\Models\StampCorrectionRequest;
 // 👇 🌟 ここを修正！Adminフォルダの中の「店長専用の門番さん」を呼び出します！
 use App\Http\Requests\Admin\CorrectionRequest; 
 
-class AdminAttendanceDetailController extends Controller
+class AdminAttendanceDetailController extends AdminBaseController
 {
     // ==========================================
     // 🌟 ① 画面を表示するお仕事

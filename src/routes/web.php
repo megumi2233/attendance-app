@@ -57,7 +57,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // ==========================================
 // 👑 管理者（Admin）用の本物ルート
 // ==========================================
-
 Route::get('/admin/login', [AdminLoginController::class, 'create']); 
 Route::post('/admin/login', [AdminLoginController::class, 'store']); 
 Route::post('/admin/logout', [AdminLoginController::class, 'destroy']); 
@@ -73,7 +72,6 @@ Route::get('/admin/attendance/staff/{id}/export', [AdminStaffAttendanceControlle
 // ==========================================
 // 🌟 難関！「申請一覧」と「承認画面」のルート
 // ==========================================
-
 Route::get('/stamp_correction_request/approve/{attendance_correct_request_id}', [AdminStampCorrectionRequestController::class, 'show']);
 Route::post('/stamp_correction_request/approve/{attendance_correct_request_id}', [AdminStampCorrectionRequestController::class, 'approve']);
 

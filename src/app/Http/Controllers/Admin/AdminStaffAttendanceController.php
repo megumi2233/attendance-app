@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Attendance;
 use Carbon\Carbon;
 
-class AdminStaffAttendanceController extends Controller
+class AdminStaffAttendanceController extends AdminBaseController
 {
     // ==========================================
     // 🌟 指定されたスタッフの「月次勤怠一覧」を表示するお仕事

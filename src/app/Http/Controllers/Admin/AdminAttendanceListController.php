@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Attendance;
 use Carbon\Carbon;
 
-class AdminAttendanceListController extends Controller
+class AdminAttendanceListController extends AdminBaseController
 {
     public function index(Request $request)
     {
@@ -16,8 +16,8 @@ class AdminAttendanceListController extends Controller
         $displayDate = $dateParam ? Carbon::parse($dateParam) : Carbon::today();
 
         // 🌟 2. 「前日」と「翌日」の日付を計算しておく
-        $prevDate = $displayDate->copy()->subDay();
-        $nextDate = $displayDate->copy()->addDay();
+        $prevDate = $displayDate->copy()->subDay()->format('Y-m-d');
+        $nextDate = $displayDate->copy()->addDay()->format('Y-m-d');
 
         // 🌟 3. その日（$displayDate）の「全ユーザーの勤怠データ」をデータベースから探してくる！
         $attendances = Attendance::with('user', 'breakTimes')

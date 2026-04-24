@@ -9,7 +9,7 @@ use App\Models\StampCorrectionRequest;
 use App\Models\Attendance;
 use App\Models\BreakTime;
 
-class AdminStampCorrectionRequestController extends Controller
+class AdminStampCorrectionRequestController extends AdminBaseController
 {
     // 一覧画面を開く
     public function index()
