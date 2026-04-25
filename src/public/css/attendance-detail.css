@@ -69,10 +69,21 @@
     /* 日付や時間と同じ「130pxの箱」にして中央に揃える！ */
     width: 130px;
     text-align: center;
+    /* 🌟 ここを追加！ */
+    display: inline-block; /* 幅（width）をしっかり効かせるために必要 */
+    line-height: 40px;      /* 入力ボックスと同じくらいの高さを持たせる魔法 */
+    vertical-align: middle; /* 縦の位置を真ん中に揃える */
 }
 
 .date-year {
     margin-right: 30px;
+}
+
+/* 🌟 時系列の「～」や位置を整えるコンテナ */
+.time-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 /* 入力欄の見た目 */
@@ -161,7 +172,7 @@
 .date-display {
     display: flex;
     align-items: center;
-    gap: 20px; /* 時間入力と同じ隙間 */
+    gap: 10px; /* 時間入力と同じ隙間 */
     margin: 0;
 }
 
@@ -187,6 +198,9 @@
     font-weight: bold;
     margin-bottom: 20px;
     text-align: center;
+    /* 🌟 この2行を付け足してください！ */
+    display: inline-block; 
+    content: "";
 }
 
 /* 入力エラーメッセージのスタイル */
