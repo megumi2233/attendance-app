@@ -192,6 +192,12 @@
     font-weight: bold;
 }
 
+/* 🌟 管理者画面の日付の隙間だけを広くする魔法 */
+.admin-date-separator {
+    width: 35px; /* 16pxから少し広げてみる（ここを微調整！） */
+    /* もし 20px でも足りなければ、25px, 30px と増やしてみてね */
+}
+
 /* 成功メッセージのスタイル */
 .success-message {
     color: green;
