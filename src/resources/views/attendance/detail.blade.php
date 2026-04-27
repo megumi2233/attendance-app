@@ -32,7 +32,10 @@
                     <td>
                         <div class="date-display">
                             <span class="date-item">{{ $year }}</span>
-                            <span class="date-separator"></span>
+
+                            {{-- 🌟 めぐみさん考案！一般ユーザー専用のクラス「general-date-separator」を追加！ --}}
+                            <span class="date-separator wide-date-separator"></span>
+
                             <span class="date-item">{{ $monthDay }}</span>
                         </div>
                     </td>
@@ -50,46 +53,56 @@
                         @else
                             {{-- 🌟 修正可能なときは入力ボックスを表示 --}}
                             <div class="time-inputs">
-                                <input type="time" name="start_time" class="time-input" value="{{ $startTime }}">
+                                {{-- 👇 🌟 ここに old() の魔法をかけました！ --}}
+                                <input type="time" name="start_time" class="time-input"
+                                    value="{{ old('start_time', $startTime) }}">
                                 <span class="time-separator">～</span>
-                                <input type="time" name="end_time" class="time-input" value="{{ $endTime }}">
+                                <input type="time" name="end_time" class="time-input"
+                                    value="{{ old('end_time', $endTime) }}">
                             </div>
                         @endif
 
-                        @error('start_time')
-                            <p class="error-message">{{ $message }}</p>
-                        @enderror
-                        @error('end_time')
-                            <p class="error-message">{{ $message }}</p>
-                        @enderror
+                        {{-- 👇 🌟 2つ並んでいたエラーを、順番待ちの魔法（@if 〜 @elseif）で合体！ --}}
+                        @if ($errors->has('start_time'))
+                            <p class="error-message">{{ $errors->first('start_time') }}</p>
+                        @elseif ($errors->has('end_time'))
+                            <p class="error-message">{{ $errors->first('end_time') }}</p>
+                        @endif
                     </td>
                 </tr>
 
                 {{-- 🌟 既存の休憩データ --}}
-                @foreach($attendance->breakTimes as $index => $breakTime)
+                @foreach ($attendance->breakTimes as $index => $breakTime)
                     <tr>
                         <th>休憩{{ $index == 0 ? '' : $index + 1 }}</th>
                         <td>
                             @if ($is_pending)
                                 <div class="time-display">
-                                    <span class="detail-text">{{ \Carbon\Carbon::parse($breakTime->start_time)->format('H:i') }}</span>
+                                    <span
+                                        class="detail-text">{{ \Carbon\Carbon::parse($breakTime->start_time)->format('H:i') }}</span>
                                     <span class="time-separator">～</span>
-                                    <span class="detail-text">{{ $breakTime->end_time ? \Carbon\Carbon::parse($breakTime->end_time)->format('H:i') : '' }}</span>
+                                    <span
+                                        class="detail-text">{{ $breakTime->end_time ? \Carbon\Carbon::parse($breakTime->end_time)->format('H:i') : '' }}</span>
                                 </div>
                             @else
                                 <div class="time-inputs">
-                                    <input type="time" name="break_times[{{ $index }}][start_time]" class="time-input" value="{{ \Carbon\Carbon::parse($breakTime->start_time)->format('H:i') }}">
+                                    {{-- 👇 🌟 ここに old() の魔法をかけました！ --}}
+                                    <input type="time" name="break_times[{{ $index }}][start_time]"
+                                        class="time-input"
+                                        value="{{ old('break_times.' . $index . '.start_time', \Carbon\Carbon::parse($breakTime->start_time)->format('H:i')) }}">
                                     <span class="time-separator">～</span>
-                                    <input type="time" name="break_times[{{ $index }}][end_time]" class="time-input" value="{{ $breakTime->end_time ? \Carbon\Carbon::parse($breakTime->end_time)->format('H:i') : '' }}">
+                                    <input type="time" name="break_times[{{ $index }}][end_time]"
+                                        class="time-input"
+                                        value="{{ old('break_times.' . $index . '.end_time', $breakTime->end_time ? \Carbon\Carbon::parse($breakTime->end_time)->format('H:i') : '') }}">
                                 </div>
                             @endif
 
-                            @error('break_times.'.$index.'.start_time')
-                                <p class="error-message">{{ $message }}</p>
-                            @enderror
-                            @error('break_times.'.$index.'.end_time')
-                                <p class="error-message">{{ $message }}</p>
-                            @enderror
+                            {{-- 👇 🌟 2つ並んでいたエラーを、順番待ちの魔法（@if 〜 @elseif）で合体！ --}}
+                            @if ($errors->has('break_times.' . $index . '.start_time'))
+                                <p class="error-message">{{ $errors->first('break_times.' . $index . '.start_time') }}</p>
+                            @elseif ($errors->has('break_times.' . $index . '.end_time'))
+                                <p class="error-message">{{ $errors->first('break_times.' . $index . '.end_time') }}</p>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -101,16 +114,22 @@
                         <th>休憩{{ $nextIndex == 0 ? '' : $nextIndex + 1 }}</th>
                         <td>
                             <div class="time-inputs">
-                                <input type="time" name="break_times[{{ $nextIndex }}][start_time]" class="time-input" value="">
+                                {{-- 👇 🌟 ここに old() の魔法をかけました！最初は空っぽ、エラー時は入力した時間を表示 --}}
+                                <input type="time" name="break_times[{{ $nextIndex }}][start_time]"
+                                    class="time-input" value="{{ old('break_times.' . $nextIndex . '.start_time') }}">
                                 <span class="time-separator">～</span>
-                                <input type="time" name="break_times[{{ $nextIndex }}][end_time]" class="time-input" value="">
+                                <input type="time" name="break_times[{{ $nextIndex }}][end_time]" class="time-input"
+                                    value="{{ old('break_times.' . $nextIndex . '.end_time') }}">
                             </div>
-                            @error('break_times.'.$nextIndex.'.start_time')
-                                <p class="error-message">{{ $message }}</p>
-                            @enderror
-                            @error('break_times.'.$nextIndex.'.end_time')
-                                <p class="error-message">{{ $message }}</p>
-                            @enderror
+
+                            {{-- 👇 🌟 2つ並んでいたエラーを、順番待ちの魔法（@if 〜 @elseif）で合体！ --}}
+                            @if ($errors->has('break_times.' . $nextIndex . '.start_time'))
+                                <p class="error-message">{{ $errors->first('break_times.' . $nextIndex . '.start_time') }}
+                                </p>
+                            @elseif ($errors->has('break_times.' . $nextIndex . '.end_time'))
+                                <p class="error-message">{{ $errors->first('break_times.' . $nextIndex . '.end_time') }}
+                                </p>
+                            @endif
                         </td>
                     </tr>
                 @endif
@@ -121,7 +140,8 @@
                         @if ($is_pending)
                             <p class="detail-text">{{ $attendance->reason }}</p>
                         @else
-                            <textarea name="reason" class="remark-textarea" rows="3">{{ $attendance->reason }}</textarea>
+                            {{-- 👇 🌟 ここに old() の魔法をかけました！ --}}
+                            <textarea name="reason" class="remark-textarea" rows="3">{{ old('reason', $attendance->reason) }}</textarea>
                         @endif
 
                         @error('reason')

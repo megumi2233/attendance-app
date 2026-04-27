@@ -10,7 +10,7 @@
     <div class="attendance-detail-page">
         <h1 class="section-title">勤怠詳細</h1>
 
-        <form class="detail-form" action="/admin/attendance/detail/{{ $attendance->id }}" method="post">
+        <form class="detail-form" action="/admin/attendance/{{ $attendance->id }}" method="post">
             @csrf
 
             <input type="hidden" name="date" value="{{ $attendance->date }}">
@@ -29,7 +29,7 @@
                             <span class="date-item">{{ \Carbon\Carbon::parse($attendance->date)->format('Y年') }}</span>
 
                             {{-- 🌟 管理者専用のクラス「admin-date-separator」を追加！ --}}
-                            <span class="date-separator admin-date-separator"></span>
+                            <span class="date-separator wide-date-separator"></span>
 
                             <span class="date-item">{{ \Carbon\Carbon::parse($attendance->date)->format('n月j日') }}</span>
                         </div>
@@ -51,12 +51,12 @@
                                 value="{{ old('end_time', $attendance->end_time ? \Carbon\Carbon::parse($attendance->end_time)->format('H:i') : '') }}">
                         </div>
 
-                        @error('start_time')
-                            <p class="error-message">{{ $message }}</p>
-                        @enderror
-                        @error('end_time')
-                            <p class="error-message">{{ $message }}</p>
-                        @enderror
+                        {{-- 👇 🌟 ここがポイント！2つの @error を @if 〜 @elseif の魔法に合体させます！ --}}
+                        @if ($errors->has('start_time'))
+                            <p class="error-message">{{ $errors->first('start_time') }}</p>
+                        @elseif ($errors->has('end_time'))
+                            <p class="error-message">{{ $errors->first('end_time') }}</p>
+                        @endif
                     </td>
                 </tr>
 
@@ -77,12 +77,12 @@
                                     value="{{ old('break_times.' . $index . '.end_time', !empty($breakTime->end_time) ? \Carbon\Carbon::parse($breakTime->end_time)->format('H:i') : '') }}">
                             </div>
 
-                            @error("break_times.{$index}.start_time")
-                                <p class="error-message">{{ $message }}</p>
-                            @enderror
-                            @error("break_times.{$index}.end_time")
-                                <p class="error-message">{{ $message }}</p>
-                            @enderror
+                            {{-- 🌟 修正後：休憩1などのエラー表示をこれに入れ替え！ --}}
+                            @if ($errors->has("break_times.{$index}.start_time"))
+                                <p class="error-message">{{ $errors->first("break_times.{$index}.start_time") }}</p>
+                            @elseif ($errors->has("break_times.{$index}.end_time"))
+                                <p class="error-message">{{ $errors->first("break_times.{$index}.end_time") }}</p>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -105,12 +105,14 @@
                                 value="{{ old('break_times.' . $attendance->breakTimes->count() . '.end_time') }}">
                         </div>
 
-                        @error('break_times.' . $attendance->breakTimes->count() . '.start_time')
-                            <p class="error-message">{{ $message }}</p>
-                        @enderror
-                        @error('break_times.' . $attendance->breakTimes->count() . '.end_time')
-                            <p class="error-message">{{ $message }}</p>
-                        @enderror
+                        {{-- 🌟 修正後：一番下の追加枠のエラー表示をこれに入れ替え！ --}}
+                        @if ($errors->has('break_times.' . $attendance->breakTimes->count() . '.start_time'))
+                            <p class="error-message">
+                                {{ $errors->first('break_times.' . $attendance->breakTimes->count() . '.start_time') }}</p>
+                        @elseif ($errors->has('break_times.' . $attendance->breakTimes->count() . '.end_time'))
+                            <p class="error-message">
+                                {{ $errors->first('break_times.' . $attendance->breakTimes->count() . '.end_time') }}</p>
+                        @endif
                     </td>
                 </tr>
 
