@@ -157,6 +157,15 @@ docker-compose exec php php artisan test
 
 ---
 
+### 💡 補足：テスト実行後のデータについて
+PHPUnit（自動テスト）を実行すると、データベースの状態がリセットされるため、手動確認用のテストユーザーが消えてしまうことがあります。
+もしログインできなくなった場合は、以下のコマンドを再度実行してデータを投入してください。
+
+bash
+docker-compose exec php php artisan db:seed
+
+---
+
 ### 🧩 View ファイルの作成
 resources/views/layouts/app.blade.php   (一般・管理者：全画面共通のヘッダー＆土台)
 resources/views/auth/register.blade.php (一般：会員登録画面)

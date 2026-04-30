@@ -179,7 +179,7 @@ class AttendanceDetailTest extends TestCase
 
         // ✅ 期待挙動：テストケース通り、「start_time」に正しいメッセージが出ること！
         $response->assertInvalid([
-            'start_time' => '出勤時間が不適切な値です'
+            'end_time' => '出勤時間もしくは退勤時間が不適切な値です'
         ]);
     }
 

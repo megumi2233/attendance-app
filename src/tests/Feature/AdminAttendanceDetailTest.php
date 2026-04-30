@@ -96,7 +96,7 @@ class AdminAttendanceDetailTest extends TestCase
 
         // ✅ 期待挙動：「出勤時間もしくは退勤時間が不適切な値です」というメッセージが出る！
         $response->assertInvalid([
-            'start_time' => '出勤時間もしくは退勤時間が不適切な値です'
+            'end_time' => '出勤時間もしくは退勤時間が不適切な値です'
         ]);
     }
 
