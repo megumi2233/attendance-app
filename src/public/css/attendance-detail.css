@@ -203,10 +203,9 @@
     color: green;
     font-weight: bold;
     margin-bottom: 20px;
-    text-align: center;
-    /* 🌟 この2行を付け足してください！ */
-    display: inline-block; 
-    content: "";
+    /* 🌟 ここから下が魔法です */
+    width: 100%;       /* 幅を画面いっぱいに広げる */
+    text-align: center; /* その中で文字を真ん中にする */
 }
 
 /* 入力エラーメッセージのスタイル */
