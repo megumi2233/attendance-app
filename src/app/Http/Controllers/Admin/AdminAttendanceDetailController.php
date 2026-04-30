@@ -23,7 +23,7 @@ class AdminAttendanceDetailController extends AdminBaseController
 
         // 👇 🌟 ここがポイント！「承認待ち（pending）」の申請があるかチェック！
         $hasPendingRequest = $attendance->stampCorrectionRequests()
-                                        ->where('status', 'pending')
+                                        ->where('status', '承認待ち')
                                         ->exists();
 
         // 画面にデータと「承認待ちかどうか」の結果を渡す
