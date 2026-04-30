@@ -17,12 +17,13 @@
             <img src="{{ asset('images/logo.png') }}" alt="COACHTECH">
         </div>
 
-        {{-- 🌟 プロのURL判定！ adminから始まるURLなら管理者用ブロックを呼ぶ --}}
-        @if (request()->is('admin*'))
+        {{-- 🌟 認証ガード（Auth Guard）による自動判定！ --}}
+        {{-- 管理者のIDカード（adminガード）を持っているかチェック --}}
+        @if (Auth::guard('admin')->check())
             @include('layouts.header-admin')
         
-        {{-- 👤 それ以外で、メール認証済みの一般ユーザーなら一般用ブロックを呼ぶ --}}
-        @elseif (Auth::check() && Auth::user()->hasVerifiedEmail())
+        {{-- 👤 一般ユーザーのIDカード（webガード）を持っていて、メール認証済みなら一般用を呼ぶ --}}
+        @elseif (Auth::guard('web')->check() && Auth::user()->hasVerifiedEmail())
             @include('layouts.header-user')
         @endif
     </header>
