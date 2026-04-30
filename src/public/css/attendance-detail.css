@@ -83,7 +83,7 @@
 .time-display {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 /* 入力欄の見た目 */
