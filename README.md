@@ -119,24 +119,21 @@ DB_DATABASE=test_database
 **②テスト用データベースの作成とマイグレーション
 ターミナルで以下のコマンドを順に実行し、テスト専用の空のデータベースを作成後、テーブルを構築します。
 
-Bash
+```bash
 # MySQLコンテナに入り、rootユーザーでログイン（パスワード: root）
-```
 docker-compose exec mysql bash
 mysql -u root -p
-```
 
 # テスト用データベースを作成し、コンテナから抜ける
-```
 CREATE DATABASE test_database;
 exit
 exit
-```
 
 # テスト用DBにマイグレーションを実行する
-```
 docker-compose exec php php artisan migrate --env=testing
 ```
+
+---
 
 #### 3. テストの実行
 環境構築後、以下のコマンドで自動テストを実行できます。
