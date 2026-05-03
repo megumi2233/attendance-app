@@ -133,8 +133,6 @@ exit
 docker-compose exec php php artisan migrate --env=testing
 ```
 
----
-
 #### 3. テストの実行
 環境構築後、以下のコマンドで自動テストを実行できます。
 
@@ -143,8 +141,6 @@ Bash
 docker-compose exec php php artisan test
 ```
 ※ 実装したすべてのテストケースにおいて、正常にパスすることを確認済みです。
-
----
 
 ### 💡 補足：テスト実行後のデータについて
 PHPUnit（自動テスト）を実行すると、データベースの状態がリセットされるため、手動確認用のテストユーザーが消えてしまうことがあります。
@@ -156,10 +152,6 @@ docker-compose exec php php artisan db:seed
 ```
 
 ---
-
-
-
-
 
 ## 機能一覧
 - [一般] 会員登録、ログイン、ログアウト
