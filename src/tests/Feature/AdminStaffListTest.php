@@ -83,7 +83,7 @@ class AdminStaffListTest extends TestCase
 
         // 2. 店長さんでログインして、一郎さんの勤怠一覧ページを開く！
         // 💡 web.php の設定と一致しているので、このURLでバッチリです！
-        $response = $this->actingAs($admin, 'admin')->get('/admin/attendance/staff/' . $user->id);
+        $response = $this->actingAs($admin, 'admin')->get('/admin/attendance/staff/' . $user->id . '?month=2026-04');
 
         // ✅ 期待挙動：ページがちゃんと開けたか？（200 OK）
         $response->assertStatus(200);
@@ -234,7 +234,7 @@ class AdminStaffListTest extends TestCase
         $this->actingAs($admin, 'admin');
 
         // 3. まずは、一郎さんの「勤怠一覧ページ」を開きます
-        $listResponse = $this->get('/admin/attendance/staff/' . $user->id);
+        $listResponse = $this->get('/admin/attendance/staff/' . $user->id . '?month=2026-04');
         $listResponse->assertStatus(200);
 
         // ✅ 期待挙動①：一覧ページに、ちゃんと「詳細画面へのリンク」が貼られているかチェック！
