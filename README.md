@@ -393,46 +393,56 @@ docker-compose exec php php artisan db:seed
 ---
 
 ### 🧩 View ファイルの作成
-resources/views/layouts/app.blade.php   (一般・管理者：全画面共通のヘッダー＆土台)
-resources/views/auth/register.blade.php (一般：会員登録画面)
-resources/views/auth/login.blade.php    (一般：ログイン画面)
-resources/views/attendance/index.blade.php  (一般：勤怠登録画面)
-resources/views/attendance/list.blade.php   (一般：勤怠一覧画面)
-resources/views/attendance/detail.blade.php (一般：勤怠詳細画面)
-resources/views/stamp_correction_request/index.blade.php     (一般：申請一覧画面)
-resources/views/auth/verify-email.blade.php   (一般：メール認証誘導画面)
-resources/views/admin/auth/login.blade.php  (管理者：ログイン画面)
-resources/views/admin/attendance/index.blade.php  (管理者：勤怠一覧)
-resources/views/admin/attendance/detail.blade.php (管理者：勤怠詳細)
-resources/views/admin/staff/index.blade.php       (管理者：スタッフ一覧) 👈追加！
-resources/views/admin/staff/show.blade.php        (管理者：スタッフ別勤怠一覧) 👈追加！
-resources/views/admin/stamp_correction_request/index.blade.php　　　(管理者：申請一覧)
-resources/views/admin/stamp_correction_request/approve.blade.php　　(管理者：修正申請承認画面)
+
+#### 共通レイアウト
+- `resources/views/layouts/app.blade.php` : 一般・管理者 全画面共通のヘッダー＆土台
+
+※ 各画面のViewファイルは、用途に応じて上記の共通レイアウトを継承（@extends）して作成しています。
+
+#### 一般ユーザー：会員登録・認証関連
+- `resources/views/auth/register.blade.php` : 会員登録画面
+- `resources/views/auth/login.blade.php` : ログイン画面
+- `resources/views/auth/verify-email.blade.php` : メール認証誘導画面
+
+#### 一般ユーザー：勤怠・申請関連
+- `resources/views/attendance/index.blade.php` : 勤怠登録画面
+- `resources/views/attendance/list.blade.php` : 勤怠一覧画面
+- `resources/views/attendance/detail.blade.php` : 勤怠詳細画面
+- `resources/views/stamp_correction_request/index.blade.php` : 申請一覧画面
+
+#### 管理者：認証関連
+- `resources/views/admin/auth/login.blade.php` : ログイン画面
+
+#### 管理者：勤怠・スタッフ・申請管理関連
+- `resources/views/admin/attendance/index.blade.php` : 勤怠一覧画面
+- `resources/views/admin/attendance/detail.blade.php` : 勤怠詳細画面
+- `resources/views/admin/staff/index.blade.php` : スタッフ一覧画面
+- `resources/views/admin/staff/show.blade.php` : スタッフ別勤怠一覧画面
+- `resources/views/admin/stamp_correction_request/index.blade.php` : 申請一覧画面
+- `resources/views/admin/stamp_correction_request/approve.blade.php` : 修正申請承認画面
 
 ---
 
-### 🎨 CSS ファイルの作成（✨は使い回しコンポーネント）
-public/css/common.css (✨全画面共通のリセット＆ヘッダー用)
-public/css/auth.css (✨一般・管理者のログイン・登録画面・メール認証誘導画面用)
-public/css/attendance.css (一般：勤怠登録画面)
+### 🎨 CSS ファイルの作成
 
-👇 【最強の使い回しCSS】
-public/css/attendance-list.css
-  ┣ (一般) 勤怠一覧画面
-  ┣ (管理者) 勤怠一覧画面
-  ┣ (管理者) スタッフ一覧画面
-  ┗ (管理者) スタッフ別勤怠一覧画面
+#### 共通スタイル
+- `public/css/common.css` : 全画面共通のリセット＆ヘッダー用スタイル
+- `public/css/auth.css` : ログイン・会員登録・メール認証誘導画面用の共通スタイル（一般・管理者）
 
-👇 【詳細画面の使い回しCSS】
-public/css/attendance-detail.css
-  ┣ (一般) 勤怠詳細画面
-  ┣ (管理者) 勤怠詳細画面
-  ┗ (管理者) 修正申請承認画面 👈追加！
+#### 各画面専用・共有スタイル
+※ 各画面のスタイルは、共通スタイル（`common.css`, `auth.css`）をベースにしつつ、似たレイアウトの画面間でCSSファイルを共有（コンポーネント化）して効率的に作成しています。
 
-👇 【申請一覧の使い回しCSS】
-public/css/request-list.css
-  ┣ (一般) 申請一覧画面
-  ┗ (管理者) 申請一覧画面 👈追加！
+- **勤怠登録関連**
+  - `public/css/attendance.css` : 勤怠登録画面（一般）
+
+- **一覧表示関連（共通コンポーネント）**
+  - `public/css/attendance-list.css` : 勤怠一覧画面（一般・管理者）、スタッフ一覧画面（管理者）、スタッフ別勤怠一覧画面（管理者）
+
+- **詳細・承認画面関連（共通コンポーネント）**
+  - `public/css/attendance-detail.css` : 勤怠詳細画面（一般・管理者）、修正申請承認画面（管理者）
+
+- **申請一覧関連（共通コンポーネント）**
+  - `public/css/request-list.css` : 申請一覧画面（一般・管理者）
 
 ---
 
