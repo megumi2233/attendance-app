@@ -240,8 +240,13 @@ docker-compose exec php php artisan db:seed
 
 ---
 
-## ER図
+### ER図（データ構造）
 
+このアプリケーションのデータ構造を視覚的に把握するため、以下にER図を掲載しています。
+
+この図では、`users`（ユーザー）テーブルと `attendances`（勤怠）テーブルを中心に構成されています。
+ユーザーが毎日の勤怠データを記録するという関係性から、`users` と `attendances` は「1対多」のリレーションで接続されています。
+また、1日の勤怠に対して複数回の休憩をとったり、修正申請を行ったりできるよう、`attendances` テーブルは `break_times` および `stamp_correction_requests` とそれぞれ「1対多」の関係となっています。
 ```mermaid
 erDiagram
     users ||--o{ attendances : "1対多"
@@ -282,8 +287,8 @@ erDiagram
         string reason
         string status
     }
-```
 
+```
 
 ## テスト用ログイン情報
 
