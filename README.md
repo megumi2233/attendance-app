@@ -252,18 +252,25 @@ erDiagram
     users ||--o{ attendances : "1対多"
     attendances ||--o{ break_times : "1対多"
     attendances ||--o{ stamp_correction_requests : "1対多"
+    stamp_correction_requests ||--o{ stamp_correction_request_break_times : "1対多"
 
     users {
         bigint id PK
         string name
         string email
+        timestamp email_verified_at
         string password
+        string remember_token
+        timestamp created_at
+        timestamp updated_at
     }
     admins {
         bigint id PK
         string name
         string email
         string password
+        timestamp created_at
+        timestamp updated_at
     }
     attendances {
         bigint id PK
@@ -271,12 +278,16 @@ erDiagram
         date date
         time start_time
         time end_time
+        timestamp created_at
+        timestamp updated_at
     }
     break_times {
         bigint id PK
         bigint attendance_id FK
         time start_time
         time end_time
+        timestamp created_at
+        timestamp updated_at
     }
     stamp_correction_requests {
         bigint id PK
@@ -286,15 +297,17 @@ erDiagram
         time end_time
         string reason
         string status
+        timestamp created_at
+        timestamp updated_at
     }
- 　　stamp_correction_request_break_times {
+    stamp_correction_request_break_times {
         bigint id PK
         bigint stamp_correction_request_id FK
         time start_time
         time end_time
         timestamp created_at
         timestamp updated_at
-　　 }
+    }
 
 ```
 
