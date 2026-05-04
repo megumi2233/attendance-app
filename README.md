@@ -287,6 +287,14 @@ erDiagram
         string reason
         string status
     }
+ 　　stamp_correction_request_break_times {
+        bigint id PK
+        bigint stamp_correction_request_id FK
+        time start_time
+        time end_time
+        timestamp created_at
+        timestamp updated_at
+　　 }
 
 ```
 
