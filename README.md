@@ -161,7 +161,86 @@ docker-compose exec php php artisan db:seed
 - [管理者] スタッフ一覧表示、個別勤怠詳細表示
 - [管理者] 勤怠情報のCSV出力（月次データ）
 
+---
+
 ## テーブル設計
+※ 各テーブルのリレーションシップについては、後述のER図をご参照ください。
+
+### 1. users テーブル（一般ユーザーの情報）
+
+| カラム名 | 型 | PK | UNIQUE | NOT NULL | FK (外部キー) |
+|---|---|:---:|:---:|:---:|---|
+| id | unsigned bigint | 〇 | | 〇 | |
+| name | string | | | 〇 | |
+| email | string | | 〇 | 〇 | |
+| email_verified_at | timestamp | | | | |
+| password | string | | | 〇 | |
+| remember_token | string | | | | |
+| created_at | timestamp | | | | |
+| updated_at | timestamp | | | | |
+
+### 2. admins テーブル（管理者の情報）
+
+| カラム名 | 型 | PK | UNIQUE | NOT NULL | FK (外部キー) |
+|---|---|:---:|:---:|:---:|---|
+| id | unsigned bigint | 〇 | | 〇 | |
+| name | string | | | 〇 | |
+| email | string | | 〇 | 〇 | |
+| password | string | | | 〇 | |
+| created_at | timestamp | | | | |
+| updated_at | timestamp | | | | |
+
+### 3. attendances テーブル（勤怠の情報）
+
+| カラム名 | 型 | PK | UNIQUE | NOT NULL | FK (外部キー) |
+|---|---|:---:|:---:|:---:|---|
+| id | unsigned bigint | 〇 | | 〇 | |
+| user_id | unsigned bigint | | | 〇 | users(id) |
+| date | date | | | 〇 | |
+| start_time | time | | | 〇 | |
+| end_time | time | | | | |
+| created_at | timestamp | | | | |
+| updated_at | timestamp | | | | |
+
+### 4. break_times テーブル（休憩の情報）
+
+| カラム名 | 型 | PK | UNIQUE | NOT NULL | FK (外部キー) |
+|---|---|:---:|:---:|:---:|---|
+| id | unsigned bigint | 〇 | | 〇 | |
+| attendance_id | unsigned bigint | | | 〇 | attendances(id) |
+| start_time | time | | | 〇 | |
+| end_time | time | | | | |
+| created_at | timestamp | | | | |
+| updated_at | timestamp | | | | |
+
+### 5. stamp_correction_requests テーブル（修正申請の情報）
+
+| カラム名 | 型 | PK | UNIQUE | NOT NULL | FK (外部キー) |
+|---|---|:---:|:---:|:---:|---|
+| id | unsigned bigint | 〇 | | 〇 | |
+| attendance_id | unsigned bigint | | | 〇 | attendances(id) |
+| date | date | | | 〇 | |
+| start_time | time | | | 〇 | |
+| end_time | time | | | 〇 | |
+| reason | string | | | 〇 | |
+| status | string | | | 〇 | |
+| created_at | timestamp | | | | |
+| updated_at | timestamp | | | | |
+
+### 6. stamp_correction_request_break_times テーブル（修正申請の休憩情報）
+
+| カラム名 | 型 | PK | UNIQUE | NOT NULL | FK (外部キー) |
+|---|---|:---:|:---:|:---:|---|
+| id | unsigned bigint | 〇 | | 〇 | |
+| stamp_correction_request_id | unsigned bigint | | | 〇 | stamp_correction_requests(id) |
+| start_time | time | | | | |
+| end_time | time | | | | |
+| created_at | timestamp | | | | |
+| updated_at | timestamp | | | | |
+
+---
+
+## ER図
 
 ```mermaid
 erDiagram
