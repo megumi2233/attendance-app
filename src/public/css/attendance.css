@@ -13,10 +13,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
-    width: 100%;
+    background-color: #F0EFF2;
     min-height: calc(100vh - 55px);
-    background-color: #f0eff2;
+    box-sizing: border-box;
 }
 
 .attendance-panel {
@@ -25,62 +24,74 @@
 
 .status-badge {
     display: inline-block;
-    margin-bottom: 20px;
-    padding: 6px 20px;
-    border-radius: 20px;
     background-color: #c8c8c8;
     color: #696969;
+    padding: 6px 20px;
+    border-radius: 20px;
     font-size: 18px;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .current-date {
+    font-size: 34px;
     margin-top: 0;
     margin-bottom: 2px;
-    color: #333333;
-    font-size: 34px;
     font-weight: normal;
+    color: #000000;
 }
 
 .current-time {
-    margin-top: 0;
-    margin-bottom: 40px;
-    color: #333333;
     font-size: 64px;
+    margin: 0 0 40px 0;
     font-weight: bold;
+    color: #000000;
 }
 
-.stamp-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    width: 600px;
-    margin: 0 auto;
-}
-
-.stamp-btn {
+.attendance-actions {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 180px;
-    border: none;
+    gap: 20px;
+}
+
+.action-button {
+    width: 140px;
+    padding: 15px 0;
     border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    color: #333;
-    font-size: 30px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: opacity 0.3s ease;
 }
 
-.stamp-btn:hover {
-    background-color: #f8f8f8;
+.action-button:hover {
+    opacity: 0.7;
 }
 
-.stamp-btn:disabled {
-    background-color: #f5f5f5;
-    color: #bbbbbb;
-    cursor: not-allowed;
-    box-shadow: none;
+.action-button--black {
+    background-color: #000;
+    color: #fff;
+    border: none;
+}
+
+.action-button--white {
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000;
+}
+
+.done-message {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 40px;
+}
+
+.detail-link:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.csv-button:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
 }

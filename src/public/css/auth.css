@@ -130,3 +130,17 @@
     color: green;
     font-weight: bold;
 }
+
+.form-button:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.verify-button:hover {
+    background-color: #cccccc;
+    transition: background-color 0.3s ease;
+}
+
+.resend-link:hover {
+    text-decoration: underline;
+}
