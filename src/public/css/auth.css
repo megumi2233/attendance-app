@@ -1,3 +1,4 @@
+/* --- Register & Login Form --- */
 .register-form,
 .login-form {
     width: 100%;
@@ -6,11 +7,15 @@
     padding-top: 40px;
 }
 
+.login-form {
+    padding-top: 150px;
+}
+
 .main-title {
-    text-align: center;
-    font-size: 28px;
     margin-bottom: 30px;
+    font-size: 28px;
     font-weight: bold;
+    text-align: center;
 }
 
 .form-group {
@@ -25,52 +30,49 @@
 }
 
 .form-input {
+    box-sizing: border-box;
     width: 100%;
     padding: 15px;
     border: 1px solid #000000;
     border-radius: 3px;
-    box-sizing: border-box;
     background-color: #ffffff;
     font-size: 16px;
 }
 
 .form-button {
     width: 100%;
+    margin-top: 20px;
     padding: 15px;
-    background-color: #000;
-    color: #fff;
     border: none;
     border-radius: 3px;
-    cursor: pointer;
+    background-color: #000;
+    color: #fff;
     font-size: 18px;
     font-weight: bold;
-    margin-top: 20px;
+    cursor: pointer;
 }
 
 .form-error {
-    color: red;
-    font-size: 14px;
     margin-top: 5px;
     margin-bottom: 0;
+    color: red;
+    font-size: 14px;
     font-weight: bold;
 }
 
 .register-link,
 .login-link {
-    text-align: center;
     margin-top: 20px;
+    text-align: center;
 }
 
 .link-text {
     color: #007bff;
-    text-decoration: none;
     font-size: 14px;
+    text-decoration: none;
 }
 
-.login-form {
-    padding-top: 150px;
-}
-
+/* --- Email Verification --- */
 .verify-container {
     display: flex;
     justify-content: center;
@@ -78,29 +80,29 @@
 }
 
 .verify-message-box {
-    text-align: center;
     width: 100%;
     max-width: 600px;
+    text-align: center;
 }
 
 .verify-text {
+    margin-bottom: 40px;
     font-size: 16px;
     font-weight: bold;
     line-height: 1.8;
-    margin-bottom: 40px;
 }
 
 .verify-button {
     display: inline-block;
-    background-color: #e0e0e0;
-    color: #000;
-    font-weight: bold;
-    font-size: 16px;
+    margin-bottom: 40px;
     padding: 12px 40px;
     border: 1px solid #999;
     border-radius: 5px;
+    background-color: #e0e0e0;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
     text-decoration: none;
-    margin-bottom: 40px;
     cursor: pointer;
 }
 
@@ -109,14 +111,14 @@
 }
 
 .resend-link {
-    background: none;
+    padding: 0;
     border: none;
+    background: none;
     color: #007bff;
     font-size: 14px;
     font-weight: bold;
-    cursor: pointer;
-    padding: 0;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .resend-link:hover {
@@ -124,7 +126,7 @@
 }
 
 .verify-success-message {
+    margin-bottom: 20px;
     color: green;
     font-weight: bold;
-    margin-bottom: 20px;
 }

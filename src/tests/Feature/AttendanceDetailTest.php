@@ -226,6 +226,7 @@ class AttendanceDetailTest extends TestCase
         $response = $this->actingAs($user)->post('/attendance/detail/' . $attendance->id, [
             'date'       => '2026-04-15',
             'start_time' => '09:30',
+            'end_time'   => '18:00',
             'reason'     => 'Test reason',
         ]);
 

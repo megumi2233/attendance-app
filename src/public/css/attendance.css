@@ -13,9 +13,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F0EFF2;
-    min-height: calc(100vh - 55px);
     box-sizing: border-box;
+    width: 100%;
+    min-height: calc(100vh - 55px);
+    background-color: #f0eff2;
 }
 
 .attendance-panel {
@@ -24,59 +25,62 @@
 
 .status-badge {
     display: inline-block;
-    background-color: #c8c8c8;
-    color: #696969;
+    margin-bottom: 20px;
     padding: 6px 20px;
     border-radius: 20px;
+    background-color: #c8c8c8;
+    color: #696969;
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 20px;
 }
 
 .current-date {
-    font-size: 34px;
     margin-top: 0;
     margin-bottom: 2px;
-    font-weight: normal;
     color: #333333;
+    font-size: 34px;
+    font-weight: normal;
 }
 
 .current-time {
+    margin-top: 0;
+    margin-bottom: 40px;
+    color: #333333;
     font-size: 64px;
-    margin: 0 0 40px 0;
     font-weight: bold;
 }
 
-.attendance-actions {
+.stamp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    width: 600px;
+    margin: 0 auto;
+}
+
+.stamp-btn {
     display: flex;
     justify-content: center;
-    gap: 20px;
-}
-
-.action-button {
-    width: 140px;
-    padding: 15px 0;
+    align-items: center;
+    height: 180px;
+    border: none;
     border-radius: 10px;
-    font-size: 18px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-size: 30px;
     font-weight: bold;
     cursor: pointer;
-    transition: opacity 0.3s;
+    transition: background-color 0.3s;
 }
 
-.action-button--black {
-    background-color: #000;
-    color: #fff;
-    border: none;
+.stamp-btn:hover {
+    background-color: #f8f8f8;
 }
 
-.action-button--white {
-    background-color: #fff;
-    color: #000;
-    border: none;
-}
-
-.done-message {
-    font-weight: bold;
-    font-size: 18px;
-    margin-top: 40px;
+.stamp-btn:disabled {
+    background-color: #f5f5f5;
+    color: #bbbbbb;
+    cursor: not-allowed;
+    box-shadow: none;
 }

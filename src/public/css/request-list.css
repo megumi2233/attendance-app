@@ -1,37 +1,37 @@
 .request-list-page {
+    box-sizing: border-box;
     width: 100%;
-    background-color: #F0EFF2;
     min-height: calc(100vh - 55px);
     padding: 40px 20px;
-    box-sizing: border-box;
+    background-color: #f0eff2;
 }
 
 .request-list-page .section-title {
-    max-width: 1000px;
-    margin: 0 auto 50px auto;
-    font-size: 28px;
-    border-left: 8px solid #000;
-    padding-left: 15px;
-    line-height: 1;
     display: flex;
     align-items: center;
+    max-width: 1000px;
+    margin: 0 auto 50px auto;
+    padding-left: 15px;
+    border-left: 8px solid #000;
+    font-size: 28px;
+    line-height: 1;
 }
 
 .request-tabs {
+    display: flex;
+    gap: 60px;
     max-width: 1000px;
     margin: 0 auto 30px auto;
-    display: flex;
-    border-bottom: 1px solid #000000;
-    gap: 60px;
     padding-left: 30px;
+    border-bottom: 1px solid #000000;
 }
 
 .request-tab {
-    font-size: 16px;
-    text-decoration: none;
-    color: #000000;
     padding-bottom: 15px;
+    color: #000000;
+    font-size: 16px;
     font-weight: normal;
+    text-decoration: none;
 }
 
 .request-tab.active {
@@ -51,20 +51,20 @@
 .request-table th,
 .request-table td {
     padding: 18px 20px;
-    text-align: center;
     font-weight: bold;
+    text-align: center;
 }
 
 .request-table th {
+    border-bottom: 4px solid #e1e1e1;
     color: #555555;
     font-size: 16px;
-    border-bottom: 4px solid #E1E1E1;
 }
 
 .request-table td {
+    border-bottom: 3px solid #e0e0e0;
     color: #555555;
     font-size: 16px;
-    border-bottom: 3px solid #e0e0e0;
 }
 
 .request-table tr:last-child td {
@@ -73,7 +73,6 @@
 
 .detail-link {
     color: #000000;
-    text-decoration: none;
     font-weight: bold;
+    text-decoration: none;
 }
-

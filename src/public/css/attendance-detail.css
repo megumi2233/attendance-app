@@ -1,20 +1,20 @@
 .attendance-detail-page {
+    box-sizing: border-box;
     width: 100%;
-    background-color: #F0EFF2;
     min-height: calc(100vh - 55px);
     padding: 40px 20px;
-    box-sizing: border-box;
+    background-color: #f0eff2;
 }
 
 .attendance-detail-page .section-title {
-    max-width: 800px;
-    margin: 0 auto 50px auto;
-    font-size: 28px;
-    border-left: 8px solid #000;
-    padding-left: 15px;
-    line-height: 1;
     display: flex;
     align-items: center;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    padding-left: 15px;
+    border-left: 8px solid #000;
+    font-size: 28px;
+    line-height: 1;
 }
 
 .detail-form {
@@ -46,20 +46,20 @@
 .detail-table th {
     width: 25%;
     color: #555555;
-    font-weight: bold;
     font-size: 16px;
+    font-weight: bold;
 }
 
 .detail-text {
+    display: inline-block;
+    width: 130px;
+    margin: 0;
     font-size: 16px;
     font-weight: bold;
-    margin: 0;
-    letter-spacing: 2px;
-    width: 130px;
-    text-align: center;
-    display: inline-block;
     line-height: 40px;
+    text-align: center;
     vertical-align: middle;
+    letter-spacing: 2px;
 }
 
 .date-year {
@@ -79,16 +79,16 @@
 }
 
 .time-input {
+    width: 130px;
     padding: 10px;
     border: 1px solid #cccccc;
     border-radius: 5px;
+    background-color: #ffffff;
+    font-family: inherit;
     font-size: 16px;
     font-weight: bold;
-    width: 130px;
-    background-color: #ffffff;
     text-align: center;
     letter-spacing: 2px;
-    font-family: inherit;
 }
 
 .time-input::-webkit-calendar-picker-indicator {
@@ -97,8 +97,8 @@
 
 .time-input:disabled,
 .remark-textarea:disabled {
-    background-color: #ffffff;
     border: 1px solid #e0e0e0;
+    background-color: #ffffff;
     color: #000000;
     -webkit-text-fill-color: #000000;
 }
@@ -108,23 +108,23 @@
 }
 
 .remark-textarea {
+    box-sizing: border-box;
     width: 320px;
     padding: 10px;
     border: 1px solid #cccccc;
     border-radius: 5px;
+    background-color: #ffffff;
     font-size: 16px;
     font-weight: bold;
     resize: none;
-    background-color: #ffffff;
-    box-sizing: border-box;
 }
 
 .pending-message {
+    margin-top: 20px;
     color: #ff6b6b;
     font-size: 14px;
     font-weight: bold;
     text-align: right;
-    margin-top: 20px;
 }
 
 .detail-actions {
@@ -143,9 +143,9 @@
 }
 
 .action-button--black {
+    border: none;
     background-color: #000;
     color: #fff;
-    border: none;
 }
 
 .date-display {
@@ -157,17 +157,17 @@
 
 .date-item {
     width: 130px;
-    text-align: center;
     font-size: 16px;
     font-weight: bold;
+    text-align: center;
     letter-spacing: 2px;
 }
 
 .date-separator,
 .time-separator {
     width: 16px;
-    text-align: center;
     font-weight: bold;
+    text-align: center;
 }
 
 .wide-date-separator {
@@ -176,31 +176,31 @@
 }
 
 .success-message {
+    width: 100%;
+    margin-bottom: 20px;
     color: green;
     font-weight: bold;
-    margin-bottom: 20px;
-    width: 100%;
     text-align: center;
 }
 
 .error-message {
+    margin-top: 5px;
     color: red;
     font-size: 14px;
-    margin-top: 5px;
     font-weight: bold;
 }
 
 .reason-text {
+    margin: 0;
     font-size: 16px;
     font-weight: bold;
-    margin: 0;
-    letter-spacing: 2px;
     text-align: left;
+    letter-spacing: 2px;
 }
 
 .action-button--gray {
+    border: none;
     background-color: #808080;
     color: #fff;
-    border: none;
     cursor: default;
 }

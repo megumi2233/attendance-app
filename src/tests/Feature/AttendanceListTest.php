@@ -91,7 +91,7 @@ class AttendanceListTest extends TestCase
             'end_time'      => '13:00:00',
         ]);
 
-        $response = $this->actingAs($user)->get('/attendance/list');
+        $response = $this->actingAs($user)->get('/attendance/list?month=2026-04');
         $response->assertStatus(200);
 
         $targetUrl = '/attendance/detail/' . $attendance->id;

@@ -14,7 +14,7 @@ class AttendanceDetailController extends Controller
     {
         $attendance = Attendance::with(['user', 'breakTimes'])->findOrFail($id);
 
-        $isPending = StampCorrectionRequest::where('attendance_id', $attendance->id)
+        $is_pending = StampCorrectionRequest::where('attendance_id', $attendance->id)
             ->where('status', '承認待ち')
             ->exists();
 
@@ -27,7 +27,7 @@ class AttendanceDetailController extends Controller
 
         return view('attendance.detail', compact(
             'attendance',
-            'isPending',
+            'is_pending',
             'year',
             'monthDay',
             'startTime',
