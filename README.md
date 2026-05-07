@@ -23,7 +23,7 @@
 ```bash
 git clone [https://github.com/megumi2233/attendance-app.git](https://github.com/megumi2233/attendance-app.git)
 cd attendance-app
-
+```
 
 
 
