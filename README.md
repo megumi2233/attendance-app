@@ -313,21 +313,21 @@ erDiagram
 
 ### 📁 主なディレクトリ構成
 
-\`\`\`
+```text
 app/
-├── Models/                 # モデル (User, Admin, Attendance など)
-├── Http/
-│   ├── Controllers/        # 一般・管理者の各コントローラー
-│   ├── Requests/           # バリデーション (FormRequest)
+├── Models/          # モデル (User, Admin, Attendance など)
+└── Http/
+    ├── Controllers/ # 一般・管理者の各コントローラー
+    └── Requests/    # バリデーション (FormRequest)
 resources/
-├── views/                  # Blade テンプレート (一般・管理者)
+└── views/           # Blade テンプレート (一般・管理者)
 tests/
-├── Feature/                # 機能テスト (認証・勤怠・申請など)
-├── Unit/                   # 単体テスト (必要に応じて)
+├── Feature/         # 機能テスト (認証・勤怠・申請など)
+└── Unit/            # 単体テスト (必要に応じて)
 database/
-├── seeders/                # 初期データ投入
-├── migrations/             # テーブル構造
-\`\`\`
+├── seeders/         # 初期データ投入
+└── migrations/      # テーブル構造
+```
 
 ---
 
