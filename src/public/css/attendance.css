@@ -1,4 +1,3 @@
-/* 見えないh1タグ用の魔法のクラス */
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -10,13 +9,12 @@
     border: 0;
 }
 
-/* --- レイアウトの設定 --- */
 .attendance-page {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #F0EFF2;
-    min-height: calc(100vh - 55px); 
+    min-height: calc(100vh - 55px);
     box-sizing: border-box;
 }
 
@@ -24,24 +22,22 @@
     text-align: center;
 }
 
-/* --- ① ステータス「勤務外」の枠を復活させ、色を調整 --- */
 .status-badge {
     display: inline-block;
-    background-color: #c8c8c8; /* 👈 枠の背景色（薄いグレー）を復活！ */
-    color: #696969;           /* 文字は読みやすい濃いめの色に */
-    padding: 6px 20px;        /* 上下を少しスリムに、左右をふっくら */
+    background-color: #c8c8c8;
+    color: #696969;
+    padding: 6px 20px;
     border-radius: 20px;
-    font-size: 18px;          /* 👈 16pxから18pxにさらに大きく！ */
-    font-weight: bold;          
+    font-size: 18px;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
-/* --- ② 日付の修正（標準の太さで大きく） --- */
 .current-date {
     font-size: 34px;
     margin-top: 0;
     margin-bottom: 2px;
-    font-weight: normal;   /* 👈 設計図通り太字を解除！ */
+    font-weight: normal;
     color: #333333;
 }
 
@@ -51,18 +47,16 @@
     font-weight: bold;
 }
 
-/* --- ボタンエリア --- */
 .attendance-actions {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
-/* --- ③ ボタンの共通設定（角丸を揃える） --- */
 .action-button {
-    width: 140px;          /* 少しだけ横幅を広げると文字がゆったりします */
+    width: 140px;
     padding: 15px 0;
-    border-radius: 10px;   /* 👈 5pxから10pxに変更して角を丸く！ */
+    border-radius: 10px;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
@@ -78,12 +72,11 @@
 .action-button--white {
     background-color: #fff;
     color: #000;
-    border: none; 
+    border: none;
 }
 
-/* --- 「お疲れ様でした。」のメッセージを太字にする --- */
 .done-message {
-    font-weight: bold;    /* ← これで太字になります！ */
-    font-size: 18px;      /* ← 設計書に合わせて少し大きくしてもいいかも */
-    margin-top: 40px;    /* ← 上に少し隙間を作るとさらに綺麗！ */
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 40px;
 }

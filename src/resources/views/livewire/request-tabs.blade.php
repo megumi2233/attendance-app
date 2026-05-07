@@ -1,11 +1,7 @@
-<div> {{-- 🚨 必須：Livewire部品は全体を1つのdivで囲む！ --}}
-
+<div>
     <div class="request-tabs">
-        {{-- 🌟 href の代わりに wire:click="changeTab(...)" を使うことで、画面がチカッとせずに裏側で切り替わります！ --}}
-        <a href="#" wire:click.prevent="changeTab('pending')"
-           class="request-tab {{ $tab === 'pending' ? 'active' : '' }}">承認待ち</a>
-        <a href="#" wire:click.prevent="changeTab('approved')"
-           class="request-tab {{ $tab === 'approved' ? 'active' : '' }}">承認済み</a>
+        <a href="#" wire:click.prevent="changeTab('pending')" class="request-tab {{ $tab === 'pending' ? 'active' : '' }}">承認待ち</a>
+        <a href="#" wire:click.prevent="changeTab('approved')" class="request-tab {{ $tab === 'approved' ? 'active' : '' }}">承認済み</a>
     </div>
 
     @if ($tab === 'pending')
@@ -29,12 +25,9 @@
                         <td>{{ $request->reason }}</td>
                         <td>{{ \Carbon\Carbon::parse($request->created_at)->format('Y/m/d') }}</td>
                         <td>
-                            {{-- 👑 【ここがハイブリッドの魔法！】案内先を切り替える！ --}}
                             @if (Auth::guard('admin')->check())
-                                {{-- 店長なら「修正申請の承認画面」へご案内！ --}}
                                 <a href="/stamp_correction_request/approve/{{ $request->id }}" class="detail-link">詳細</a>
                             @else
-                                {{-- 一般スタッフなら「自分の勤怠詳細画面」へご案内！ --}}
                                 <a href="/attendance/detail/{{ $request->attendance_id }}" class="detail-link">詳細</a>
                             @endif
                         </td>
@@ -65,12 +58,9 @@
                         <td>{{ $request->reason }}</td>
                         <td>{{ \Carbon\Carbon::parse($request->created_at)->format('Y/m/d') }}</td>
                         <td>
-                            {{-- 👑 【ここがハイブリッドの魔法！】案内先を切り替える！ --}}
                             @if (Auth::guard('admin')->check())
-                                {{-- 店長なら「修正申請の承認画面」へご案内！ --}}
                                 <a href="/stamp_correction_request/approve/{{ $request->id }}" class="detail-link">詳細</a>
                             @else
-                                {{-- 一般スタッフなら「自分の勤怠詳細画面」へご案内！ --}}
                                 <a href="/attendance/detail/{{ $request->attendance_id }}" class="detail-link">詳細</a>
                             @endif
                         </td>
@@ -79,5 +69,4 @@
             </tbody>
         </table>
     @endif
-
 </div>

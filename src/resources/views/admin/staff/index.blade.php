@@ -19,16 +19,12 @@
             </tr>
         </thead>
         <tbody>
-            {{-- 👇 🌟 ここが魔法！データベースから取ってきた人数の分だけ行（tr）を自動で増やす！ --}}
             @foreach($users as $user)
-            <tr>
-                {{-- 本物の「名前」と「メールアドレス」を表示 --}}
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-                
-                {{-- 👇 🌟 その人のID（$user->id）をURLに埋め込んで、個別の詳細画面へ案内する！ --}}
-                <td><a href="/admin/attendance/staff/{{ $user->id }}" class="detail-link">詳細</a></td>
-            </tr>
+                <tr>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td><a href="/admin/attendance/staff/{{ $user->id }}" class="detail-link">詳細</a></td>
+                </tr>
             @endforeach
         </tbody>
     </table>

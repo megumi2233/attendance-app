@@ -7,11 +7,9 @@
 @endsection
 
 @section('content')
-    <div class="request-list-page">
-        <h1 class="section-title">申請一覧</h1>
+<div class="request-list-page">
+    <h1 class="section-title">申請一覧</h1>
 
-        {{-- 👇 🌟 ここにLivewireの「タブ切り替え魔法部品」をポンッと置くだけ！ --}}
-        @livewire('request-tabs')
-        
-    </div>
+    @livewire('request-tabs')
+</div>
 @endsection

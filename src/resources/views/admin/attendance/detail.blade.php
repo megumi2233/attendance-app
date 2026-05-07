@@ -34,7 +34,6 @@
             <tr>
                 <th>出勤・退勤</th>
                 <td>
-                    {{-- ✅ 承認待ちの場合は文字だけ表示 --}}
                     @if ($hasPendingRequest)
                         <div class="time-display">
                             <span class="detail-text">{{ \Carbon\Carbon::parse($attendance->start_time)->format('H:i') }}</span>
@@ -56,7 +55,6 @@
                 </td>
             </tr>
 
-            {{-- 既存の休憩データ --}}
             @foreach ($attendance->breakTimes as $index => $breakTime)
             <tr>
                 <th>休憩{{ $index === 0 ? '' : $index + 1 }}</th>
@@ -83,7 +81,6 @@
             </tr>
             @endforeach
 
-            {{-- ✅ 追加用の空の休憩枠は、承認待ちの時はまるごと隠す！ --}}
             @if (!$hasPendingRequest)
             <tr>
                 <th>休憩{{ $attendance->breakTimes->count() > 0 ? $attendance->breakTimes->count() + 1 : '' }}</th>
@@ -117,7 +114,6 @@
             </tr>
         </table>
 
-        {{-- めぐみさん実装済みの完璧なボタン切り替え --}}
         @if ($hasPendingRequest)
             <p class="pending-message">* 承認待ちのため修正はできません。</p>
         @else

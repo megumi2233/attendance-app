@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Requests;
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,7 +11,6 @@ class StampCorrectionRequestBreakTime extends Model
 {
     use HasFactory;
 
-    // 👇 これが「保存していいよ！」という許可リストです！
     protected $fillable = [
         'stamp_correction_request_id',
         'start_time',

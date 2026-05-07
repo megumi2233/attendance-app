@@ -15,7 +15,6 @@ class BreakTime extends Model
         'end_time',
     ];
 
-    // Attendance（勤怠）との関係：「この休憩は、1つの勤怠データに属しています（belongsTo）」
     public function attendance()
     {
         return $this->belongsTo(Attendance::class);

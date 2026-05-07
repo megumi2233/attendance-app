@@ -1,42 +1,36 @@
-/* ① 画面全体をグレーにして、一番下まで伸ばす */
 .attendance-list-page {
     width: 100%;
-    background-color: #F0EFF2; /* 👈 全体をグレーに！ */
+    background-color: #F0EFF2;
     min-height: calc(100vh - 55px);
     padding: 40px 20px;
 }
 
-/* ② タイトルの位置を、真ん中エリアに合わせる */
 .attendance-list-page .section-title {
     max-width: 1000px;
-    margin: 40px auto 30px auto; /* 👈 上の余白を0から40pxに増やして下に下げる！ */
-    font-size: 28px; /* 👈 【追加】文字サイズを大きく！ */
-    /* 👇 ここを 8px solid #000 にして、paddingを追加！ */
+    margin: 40px auto 30px auto;
+    font-size: 28px;
     border-left: 8px solid #000;
     padding-left: 15px;
 }
 
-/* 👇 【リファクタリング】③ 日付（月・日）の切り替え部分を白く囲む */
 .date-selector {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff; /* 👈 白い箱にする！ */
+    background-color: #fff;
     padding: 15px 30px;
     margin: 0 auto 20px auto;
-    border-radius: 15px; /* 少し角を丸く */
+    border-radius: 15px;
     max-width: 1000px;
 }
 
-/* 矢印ボタンの設定（文字の矢印用） */
 .date-selector-btn {
     color: #888888;
-    font-weight: 900; /* 👈 文字の限界まで太く！ */
+    font-weight: 900;
     text-decoration: none;
-    font-size: 16px;  /* 👈 少し大きめにして存在感を出す！ */
+    font-size: 16px;
 }
 
-/* 右矢印のときだけ左側に隙間を作る */
 .date-selector-btn:last-child .arrow-icon {
     margin-right: 0;
     margin-left: 5px;
@@ -47,7 +41,6 @@
     font-weight: bold;
 }
 
-/* ④ テーブルを白く囲む（✨ここを角丸仕様に書き換えました！✨） */
 .attendance-table {
     width: 100%;
     max-width: 1000px;
@@ -55,63 +48,54 @@
     border-collapse: separate;
     border-spacing: 0;
     background-color: #fff;
-    border: none; /* 👈 1px solid #e0e0e0; から none（無し）に書き換えて枠を消す！ */
+    border: none;
     border-radius: 15px;
     overflow: hidden;
 }
 
-/* ⑤ テーブルの基本設定（文字の隙間を広げる！） */
 .attendance-table th,
 .attendance-table td {
-    /* 👇 20px（上下左右）から、15px(上下) 20px(左右) に変更して、縦幅を少しキュッと締めます！ */
-    padding: 15px 20px; 
+    padding: 15px 20px;
     text-align: center;
-    font-weight: bold; 
-    letter-spacing: 2px; 
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
-/* ⑥ 見出し行（1行目）の特別な設定 */
 .attendance-table th {
     color: #888888;
     font-size: 16px;
-    border-bottom: 4px solid #E1E1E1; /* 👈 1行目だけ、線をさらに太く(4px)＆少し濃くして目立たせる！ */
+    border-bottom: 4px solid #E1E1E1;
 }
 
-/* ⑦ データ行（2行目以降）の特別な設定 */
 .attendance-table td {
     color: #888888;
-    font-size: 16px; /* 👈 文字サイズをしっかり16pxに固定 */
-    border-bottom: 3px solid #e0e0e0; /* 👈 2行目以降の線は、少し細め(2px)に戻す！ */
+    font-size: 16px;
+    border-bottom: 3px solid #e0e0e0;
 }
 
-/* 👇 【新規追加】一番下の行は線を消す魔法！ */
 .attendance-table tr:last-child td {
     border-bottom: none;
 }
 
-/* ⑧ 2行目以降の「詳細」リンクの設定 */
 .detail-link {
-    color: #000000; /* 👈 「詳細」だけは真っ黒の太字！ */
+    color: #000000;
     text-decoration: none;
     font-weight: bold;
 }
 
-/* カレンダーアイコンの位置とサイズを調整 */
 .calendar-icon {
-    vertical-align: middle; /* 文字の高さの真ん中に合わせる */
-    margin-right: 8px;      /* 右の文字（2023/06）との間に隙間をあける */
-    margin-bottom: 4px;     /* 少しだけ上に持ち上げる微調整 */
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-bottom: 4px;
 }
 
-/* 👇 【新規追加】CSV出力ボタンのエリア（右寄せ） */
 .export-actions {
     max-width: 1000px;
     margin: 20px auto 0 auto;
     display: flex;
-    justify-content: flex-end; /* 右端に寄せる魔法 */
+    justify-content: flex-end;
 }
 
-/* CSV出力ボタンのデザイン */
 .export-btn {
     background-color: #000;
     color: #fff;
@@ -124,21 +108,18 @@
     letter-spacing: 2px;
 }
 
-/* 👇 【新規追加】タイトルの直後にテーブルが来る場合（日付パーツがない画面）だけ、上に隙間を作る魔法！ */
 .section-title + .attendance-table {
-    margin-top: 80px; /* 👈 ここで隙間をグッと広げます！ */
+    margin-top: 80px;
 }
 
-/* --- 矢印アイコンの設定 (引っ越し分) --- */
 .arrow-icon {
     vertical-align: middle;
-    margin-right: 5px;   /* 左矢印用 */
-    margin-left: 5px;    /* 右矢印用（あとで調整されます） */
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
-/* 矢印の横にある「前月」「翌月」の文字 */
 .arrow-label {
     vertical-align: middle;
-    color: #737373;      /* めぐみさんが見つけたこだわりの色！ */
-    font-weight: bold;   /* 太字にしてバランスを整える */
+    color: #737373;
+    font-weight: bold;
 }

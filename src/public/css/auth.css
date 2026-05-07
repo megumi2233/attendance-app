@@ -1,56 +1,50 @@
-/* ① 横幅と上の余白を大きく！ */
 .register-form,
 .login-form {
     width: 100%;
-    max-width: 600px; /* 👈 500pxから600pxに広げる！ */
+    max-width: 600px;
     margin: 0 auto;
-    padding-top: 40px; /* 👈 ヘッダーからの距離を少し下げる！ */
+    padding-top: 40px;
 }
 
-/* ② タイトルを大きく、下の余白も広く！ */
 .main-title {
     text-align: center;
-    font-size: 28px; /* 👈 24pxから大きく！ */
-    margin-bottom: 30px; /* 👈 30pxから広く！ */
+    font-size: 28px;
+    margin-bottom: 30px;
     font-weight: bold;
 }
 
-/* ③ 入力欄と入力欄の間の隙間を広くして、縦に長くする！ */
 .form-group {
-    margin-bottom: 30px; /* 👈 20pxから広く！ */
+    margin-bottom: 30px;
 }
 
-/* ④ ラベル（名前、メールアドレス等の文字）を少し大きく！ */
 .form-label {
     display: block;
-    margin-bottom: 10px; /* 👈 5pxから広く！ */
-    font-size: 16px; /* 👈 14pxから大きく！ */
+    margin-bottom: 10px;
+    font-size: 16px;
     font-weight: bold;
 }
 
-/* ⑤ 入力欄の「中の余白」を増やして、高さを出す！ */
 .form-input {
     width: 100%;
-    padding: 15px; /* 👈 10pxから15pxに増やして、分厚くする！ */
+    padding: 15px;
     border: 1px solid #000000;
     border-radius: 3px;
     box-sizing: border-box;
     background-color: #ffffff;
-    font-size: 16px; /* 👈 入力する文字も少し大きく */
+    font-size: 16px;
 }
 
-/* ⑥ ボタンも分厚く、文字を大きく！ */
 .form-button {
     width: 100%;
-    padding: 15px; /* 👈 12pxから15pxに増やして分厚く！ */
+    padding: 15px;
     background-color: #000;
     color: #fff;
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    font-size: 18px; /* 👈 16pxから大きく！ */
+    font-size: 18px;
     font-weight: bold;
-    margin-top: 20px; /* 👈 ボタンの上の隙間も広く！ */
+    margin-top: 20px;
 }
 
 .form-error {
@@ -73,58 +67,51 @@
     font-size: 14px;
 }
 
-/* ログイン画面は入力欄が少なくて上に寄ってしまうので、特別に上の余白を増やす！ */
 .login-form {
-    padding-top: 150px; /* 👈 80pxよりも大きくして、グッと下に押し下げます！ */
+    padding-top: 150px;
 }
 
-/* =========================================
-   📧 メール認証誘導画面（verify-email）のスタイル
-   ========================================= */
 .verify-container {
     display: flex;
     justify-content: center;
-    padding-top: 150px; /* 画面の真ん中くらいに下げる */
+    padding-top: 150px;
 }
 
 .verify-message-box {
-    text-align: center; /* 文字もボタンも全部真ん中寄せ！ */
+    text-align: center;
     width: 100%;
     max-width: 600px;
 }
 
-/* メッセージのテキスト */
 .verify-text {
     font-size: 16px;
     font-weight: bold;
-    line-height: 1.8; /* 行間を少し広くして読みやすく */
+    line-height: 1.8;
     margin-bottom: 40px;
 }
 
-/* 🌟 グレーの「認証はこちらから」ボタン */
 .verify-button {
     display: inline-block;
-    background-color: #e0e0e0; /* Figmaっぽい薄いグレー */
+    background-color: #e0e0e0;
     color: #000;
     font-weight: bold;
     font-size: 16px;
     padding: 12px 40px;
     border: 1px solid #999;
     border-radius: 5px;
-    text-decoration: none; /* リンクの青い下線を消す */
+    text-decoration: none;
     margin-bottom: 40px;
     cursor: pointer;
 }
 
 .verify-button:hover {
-    background-color: #cccccc; /* マウスを乗せたら少し濃くするおまけ */
+    background-color: #cccccc;
 }
 
-/* 🌟 青い「再送する」リンク（実はボタン） */
 .resend-link {
-    background: none; /* ボタンの背景を透明にする魔法 */
-    border: none;     /* ボタンの枠線を消す魔法 */
-    color: #007bff;   /* リンクっぽい青色 */
+    background: none;
+    border: none;
+    color: #007bff;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
@@ -133,10 +120,9 @@
 }
 
 .resend-link:hover {
-    text-decoration: underline; /* マウスを乗せたら下線を出す */
+    text-decoration: underline;
 }
 
-/* 再送成功メッセージ */
 .verify-success-message {
     color: green;
     font-weight: bold;

@@ -1,99 +1,83 @@
-/* 画面全体の設定 */
 .attendance-detail-page {
     width: 100%;
     background-color: #F0EFF2;
     min-height: calc(100vh - 55px);
     padding: 40px 20px;
-    box-sizing: border-box; /* はみ出し防止のお守り */
+    box-sizing: border-box;
 }
 
-/* 🎯タイトルとテーブルの隙間を広げる！ */
 .attendance-detail-page .section-title {
     max-width: 800px;
-    margin: 0 auto 50px auto; /* 下の余白を50pxに拡大！ */
+    margin: 0 auto 50px auto;
     font-size: 28px;
-    /* 👇 ここを 8px solid #000 にして、paddingを追加！ */
     border-left: 8px solid #000;
     padding-left: 15px;
-    
-    /* 文字の高さを微調整して棒と中央を合わせる魔法 */
     line-height: 1;
     display: flex;
     align-items: center;
 }
 
-/* フォーム全体の枠（背景色は無くします） */
 .detail-form {
     max-width: 800px;
     margin: 0 auto;
 }
 
-/* 🎯テーブル本体を「白い箱」にする */
 .detail-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff; /* 白い背景をテーブルに直接かける！ */
+    background-color: #fff;
     border-radius: 5px;
-    overflow: hidden; /* 角丸を綺麗に見せる魔法 */
+    overflow: hidden;
 }
 
-/* 🎯縦幅をキュッと縮めて1画面に収め、横の余白で文字を内側に入れる！ */
 .detail-table th,
 .detail-table td {
-    padding: 18px 60px; 
+    padding: 18px 60px;
     border-bottom: 1px solid #e0e0e0;
     text-align: left;
     vertical-align: middle;
 }
 
-/* 備考の下の線は消す */
 .detail-table tr:last-child th,
 .detail-table tr:last-child td {
     border-bottom: none;
 }
 
-/* 左側の見出しの文字設定 */
 .detail-table th {
     width: 25%;
     color: #555555;
-    font-weight: bold; 
+    font-weight: bold;
     font-size: 16px;
 }
 
-/* 右側のデータ（名前など）の文字設定 */
 .detail-text {
     font-size: 16px;
     font-weight: bold;
     margin: 0;
     letter-spacing: 2px;
-    /* 日付や時間と同じ「130pxの箱」にして中央に揃える！ */
     width: 130px;
     text-align: center;
-    /* 🌟 ここを追加！ */
-    display: inline-block; /* 幅（width）をしっかり効かせるために必要 */
-    line-height: 40px;      /* 入力ボックスと同じくらいの高さを持たせる魔法 */
-    vertical-align: middle; /* 縦の位置を真ん中に揃える */
+    display: inline-block;
+    line-height: 40px;
+    vertical-align: middle;
 }
 
 .date-year {
     margin-right: 30px;
 }
 
-/* 🌟 時系列の「～」や位置を整えるコンテナ */
 .time-display {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-/* 入力欄の見た目 */
 .time-inputs {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-/* 入力欄の見た目 */
 .time-input {
     padding: 10px;
     border: 1px solid #cccccc;
@@ -104,15 +88,13 @@
     background-color: #ffffff;
     text-align: center;
     letter-spacing: 2px;
-    font-family: inherit; /* ページ全体のフォントと同じにして一体感を出します！ */
+    font-family: inherit;
 }
 
-/* 邪魔な時計アイコンを消す */
 .time-input::-webkit-calendar-picker-indicator {
     display: none;
 }
 
-/* 承認待ち（ロック）時の入力欄 */
 .time-input:disabled,
 .remark-textarea:disabled {
     background-color: #ffffff;
@@ -134,10 +116,9 @@
     font-weight: bold;
     resize: none;
     background-color: #ffffff;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
-/* ボタンとエラーメッセージのエリア */
 .pending-message {
     color: #ff6b6b;
     font-size: 14px;
@@ -148,11 +129,10 @@
 
 .detail-actions {
     display: flex;
-    justify-content: flex-end; /* 右寄せ */
+    justify-content: flex-end;
     margin-top: 30px;
 }
 
-/* ボタンは白い箱の外（グレー背景の上）に配置されます！ */
 .action-button {
     width: 150px;
     padding: 15px 0;
@@ -168,23 +148,21 @@
     border: none;
 }
 
-/* 日付を時間入力欄と完全に縦揃えする魔法！ */
 .date-display {
     display: flex;
     align-items: center;
-    gap: 10px; /* 時間入力と同じ隙間 */
+    gap: 10px;
     margin: 0;
 }
 
 .date-item {
-    width: 130px; /* input欄と同じ幅 */
-    text-align: center; /* 真ん中寄せ */
+    width: 130px;
+    text-align: center;
     font-size: 16px;
     font-weight: bold;
     letter-spacing: 2px;
 }
 
-/* 日付の間の空白と、時間の間の「～」の幅を固定して軸を合わせる */
 .date-separator,
 .time-separator {
     width: 16px;
@@ -192,23 +170,19 @@
     font-weight: bold;
 }
 
-/* 🌟 管理者・一般ユーザー共通！日付の隙間を広くする魔法 */
 .wide-date-separator {
-    display: inline-block; /* 幅の指定を確実に効かせるためのおまじない */
-    width: 35px; /* ここを調整すれば、両方の画面がいっぺんに変わります！ */
+    display: inline-block;
+    width: 35px;
 }
 
-/* 成功メッセージのスタイル */
 .success-message {
     color: green;
     font-weight: bold;
     margin-bottom: 20px;
-    /* 🌟 ここから下が魔法です */
-    width: 100%;       /* 幅を画面いっぱいに広げる */
-    text-align: center; /* その中で文字を真ん中にする */
+    width: 100%;
+    text-align: center;
 }
 
-/* 入力エラーメッセージのスタイル */
 .error-message {
     color: red;
     font-size: 14px;
@@ -216,7 +190,6 @@
     font-weight: bold;
 }
 
-/* 備考用のテキスト（文字数が多いので横幅を制限せず、左寄せにする！） */
 .reason-text {
     font-size: 16px;
     font-weight: bold;
@@ -225,10 +198,9 @@
     text-align: left;
 }
 
-/* 承認済み用のグレーのボタン */
 .action-button--gray {
-    background-color: #808080; /* Figmaっぽいグレー */
+    background-color: #808080;
     color: #fff;
     border: none;
-    cursor: default; /* マウスを乗せても指マークにならないようにする */
+    cursor: default;
 }
