@@ -1,44 +1,8 @@
 # coachtech 勤怠管理アプリ
 
-### 概要
-[cite_start]従業員の勤怠打刻（出勤・退勤・休憩）から、管理者による修正申請の承認、月次データのCSV出力までをカバーした、実務特化型の勤怠管理アプリケーションです。 
-
----
-
-### 💻 使用技術
-- [cite_start]**PHP 8.x / Laravel 8.x** 
-- [cite_start]**MySQL 8.0** 
-- [cite_start]**Docker（nginx / php / mysql / mailhog）** 
-- [cite_start]**Laravel Fortify**（一般・管理者のマルチ認証対応） 
-- [cite_start]**Carbon**（打刻管理・月次集計） 
-- [cite_start]**PHPUnit**（機能テスト・バリデーションテスト） 
-
----
-
-## 🛠 環境構築
-
-※ 事前に Docker Desktop を起動しておいてください。
-
-### 1. リポジトリの取得
-```bash
-git clone [https://github.com/megumi2233/attendance-app.git](https://github.com/megumi2233/attendance-app.git)
-cd attendance-app
-```
-
-
-
-
-
-
-
-
-
-# coachtech 勤怠管理アプリ
-
-### 概要
-COACHTECH 模擬案件：ある企業が開発した独自の勤怠管理アプリケーションです。
-
-従業員の勤怠打刻（出勤・退勤・休憩）や、管理者による勤怠状況の確認・修正申請の承認機能などを実装しています。
+COACHTECH 模擬案件として開発した勤怠管理アプリケーションです。  
+一般ユーザーの勤怠打刻（出勤・退勤・休憩）から、管理者による勤怠確認・修正承認まで、  
+実務を想定したフローを一通り実装しています。
 
 ---
 
@@ -344,6 +308,26 @@ erDiagram
         timestamp updated_at
     }
 ```
+
+---
+
+### 📁 主なディレクトリ構成
+
+\`\`\`
+app/
+├── Models/                 # モデル (User, Admin, Attendance など)
+├── Http/
+│   ├── Controllers/        # 一般・管理者の各コントローラー
+│   ├── Requests/           # バリデーション (FormRequest)
+resources/
+├── views/                  # Blade テンプレート (一般・管理者)
+tests/
+├── Feature/                # 機能テスト (認証・勤怠・申請など)
+├── Unit/                   # 単体テスト (必要に応じて)
+database/
+├── seeders/                # 初期データ投入
+├── migrations/             # テーブル構造
+\`\`\`
 
 ---
 
