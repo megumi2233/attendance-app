@@ -319,14 +319,14 @@ app/
 └── Http/
     ├── Controllers/ # 一般・管理者の各コントローラー
     └── Requests/    # バリデーション (FormRequest)
+database/
+├── migrations/      # テーブル構造
+└── seeders/         # 初期データ投入
 resources/
 └── views/           # Blade テンプレート (一般・管理者)
 tests/
 ├── Feature/         # 機能テスト (認証・勤怠・申請など)
 └── Unit/            # 単体テスト (必要に応じて)
-database/
-├── seeders/         # 初期データ投入
-└── migrations/      # テーブル構造
 ```
 
 ---
