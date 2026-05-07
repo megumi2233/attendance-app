@@ -1,9 +1,8 @@
 # coachtech 勤怠管理アプリ
 
-### 概要
-COACHTECH 模擬案件：ある企業が開発した独自の勤怠管理アプリケーションです。
-
-従業員の勤怠打刻（出勤・退勤・休憩）や、管理者による勤怠状況の確認・修正申請の承認機能などを実装しています。
+COACHTECH 模擬案件として開発した勤怠管理アプリケーションです。  
+一般ユーザーの勤怠打刻（出勤・退勤・休憩）から、管理者による勤怠確認・修正承認まで、  
+実務を想定したフローを一通り実装しています。
 
 ---
 
@@ -308,6 +307,26 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
+```
+
+---
+
+### 📁 主なディレクトリ構成
+
+```text
+app/
+├── Models/          # モデル (User, Admin, Attendance など)
+└── Http/
+    ├── Controllers/ # 一般・管理者の各コントローラー
+    └── Requests/    # バリデーション (FormRequest)
+database/
+├── migrations/      # テーブル構造
+└── seeders/         # 初期データ投入
+resources/
+└── views/           # Blade テンプレート (一般・管理者)
+tests/
+├── Feature/         # 機能テスト (認証・勤怠・申請など)
+└── Unit/            # 単体テスト (必要に応じて)
 ```
 
 ---
