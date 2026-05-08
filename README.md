@@ -30,7 +30,7 @@ COACHTECH 模擬案件として開発した勤怠管理アプリケーション�
 まずはこのプロジェクトをご自身のパソコンにクローン（コピー）してください。
 
 ```bash
-git clone https://github.com/megumi2233/attendance-app.git
+git clone git@github.com:megumi2233/attendance-app.git
 cd attendance-app
 ```
 
