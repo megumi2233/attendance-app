@@ -26,7 +26,7 @@ COACHTECH 模擬案件として開発した勤怠管理アプリケーション�
 
 ※ 事前に Docker Desktop を起動しておいてください。
 
-### 前提条件
+### Prerequisites（前提条件）
 このプロジェクトを動かすには、以下のツールがインストールされている必要があります。
 
 - **Docker / Docker Compose**
