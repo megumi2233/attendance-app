@@ -82,13 +82,27 @@ make init
 
 **【管理者ユーザー】**
 - ログインURL: [http://localhost/admin/login](http://localhost/admin/login)
-- メールアドレス: `admin@example.com`
-- パスワード: `password`
+- メールアドレス:
+```text
+admin@example.com
+```
+
+- パスワード:
+```text
+password
+```
 
 **【一般ユーザー】**
 - ログインURL: [http://localhost/login](http://localhost/login)
-- メールアドレス: `test@example.com`
-- パスワード: `password`
+- メールアドレス:
+```text
+test@example.com
+```
+
+- パスワード:
+```text
+password
+```
 
 #### 2. 新規ユーザー登録とメール認証フロー（※新規作成から試す場合）
 - **新規会員登録画面**: [http://localhost/register](http://localhost/register)
