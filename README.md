@@ -52,6 +52,9 @@ COACHTECH 模擬案件として開発した勤怠管理アプリケーション�
 
 ```bash
 git clone git@github.com:megumi2233/attendance-app.git
+```
+
+```bash
 cd attendance-app
 ```
 
