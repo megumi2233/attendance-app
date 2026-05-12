@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
 
         $otherUsers = User::factory(10)->create();
 
-        for ($i = 0; $i <= 30; $i++) {
+        for ($i = 1; $i <= 30; $i++) {
             $date = Carbon::today()->subDays($i);
 
             if ($date->isWeekend()) {
