@@ -67,7 +67,7 @@ class CorrectionRequest extends FormRequest
                     $bEndMin = $toMin($break['end_time'] ?? null);
 
                     if ($bStartMin !== null) {
-                        if ($startMin !== null && $bStartMin <= $startMin) {
+                        if ($startMin !== null && $bStartMin < $startMin) {
                             $validator->errors()->add("break_times.{$index}.start_time", '休憩時間が不適切な値です');
                         }
                         if ($endMin !== null && $bStartMin > $endMin) {
