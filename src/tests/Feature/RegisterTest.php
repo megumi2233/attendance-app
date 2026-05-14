@@ -55,7 +55,7 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'different_password',
         ]);
 
-        $response->assertSessionHasErrors(['password' => 'パスワードと一致しません']);
+        $response->assertSessionHasErrors(['password_confirmation' => 'パスワードと一致しません']);
     }
 
     public function test_password_is_required()
