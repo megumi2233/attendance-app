@@ -25,7 +25,7 @@ class UserLoginController extends Controller
 
         return back()->withErrors([
             'email' => 'ログイン情報が登録されていません',
-        ]);
+        ])->withInput();
     }
 
     public function destroy(Request $request)
